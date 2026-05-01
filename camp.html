@@ -1,0 +1,3012 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head >
+<meta name="referrer" content="strict-origin-when-cross-origin" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>2026 高飛羽球夏令營</title>
+<link rel="icon" type="image/png" href="images/glogo.png"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --lime:   #DAFF49;
+    --violet: #819efe;
+    --dark:   #1e003a;
+  }
+
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: white;
+    min-height: 100vh;
+  }
+
+  /* ══════════════════════════════════
+    HERO SECTION
+  ══════════════════════════════════ */
+  .hero {
+    position: relative;
+    min-height: 120vh;
+    display: flex;
+    flex-direction: column;
+    /* purple gradient base */
+    /* background: linear-gradient(
+      145deg,
+      #709ede  0%,
+      #193d8a  30%,
+      #48cdde  55%,
+      var(--violet) 75%,
+      #aeea23  100%
+    ); */
+  }
+
+  /* ── background image (the court/sky) blended over gradient ── */
+  .hero-bg {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 135vh;
+    z-index: 0;
+    pointer-events: none;
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 52%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 0%, black 52%, transparent 100%);
+  }
+  .hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    mix-blend-mode: overlay;
+    opacity: 0.9;
+  }
+
+  /* ── multi-layer gradient fade at hero bottom ── */
+  .hero::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 300px;
+    background: linear-gradient(to bottom,
+      transparent 0%,
+      rgba(255,255,255,0.5) 55%,
+      #ffffff 100%
+    );
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* ── lime court sweep bottom-right (CSS) ── */
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    right: -60px;
+    width: 62%;
+    height: 55%;
+    background: radial-gradient(ellipse at 80% 80%, rgba(218,255,73,0.18) 0%, transparent 70%);
+    border-radius: 60% 0 0 60%;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* ── glow blobs ── */
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .blob-lime {
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(218,255,73,0.12) 0%, transparent 65%);
+    top: -160px; left: -120px;
+  }
+  .blob-violet {
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(221,129,254,0.18) 0%, transparent 65%);
+    bottom: -250px; right: -200px;
+  }
+
+  /* ── decorative floating balls (CSS only, like the reference) ── */
+  .deco-ball {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 3;
+    animation: floatBall 5s ease-in-out infinite;
+  }
+  .ball-lime-1 {
+    width: 52px; height: 52px;
+    background: radial-gradient(circle at 35% 30%, #eeff80, #9ecf00);
+    top: 12%; left: 4%;
+    animation-delay: 0s;
+    box-shadow: 0 6px 20px rgba(218,255,73,0.4);
+  }
+  .ball-lime-2 {
+    width: 38px; height: 38px;
+    background: radial-gradient(circle at 35% 30%, #eeff80, #9ecf00);
+    bottom: 28%; right: 46%;
+    animation-delay: 1.5s;
+    box-shadow: 0 6px 20px rgba(218,255,73,0.3);
+  }
+  .ball-purple {
+    width: 44px; height: 44px;
+    background: radial-gradient(circle at 35% 30%, #f0b8ff, #9030cc);
+    top: 8%; right: 44%;
+    animation-delay: 0.8s;
+    box-shadow: 0 6px 20px rgba(180,80,240,0.4);
+  }
+
+  @keyframes floatBall {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-14px); }
+  }
+
+  /* ══════════════════════════════════
+     TOP BAR
+  ══════════════════════════════════ */
+  .top-bar {
+    position: relative;
+    z-index: 20;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 32px 56px 0;
+  }
+
+  .logo img {
+    height: 32px;
+    width: auto;
+    display: block;
+  }
+
+  .game-on-tag {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-align: right;
+    color: #fff;
+  }
+  .game-on-tag .lines {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .game-on-tag .l1 {
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 4px;
+  }
+  .game-on-tag .l2 {
+    font-size: 10px;
+    letter-spacing: 2px;
+    opacity: 0.75;
+  }
+  .game-on-tag img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3));
+  }
+
+  /* ══════════════════════════════════
+    HERO BODY  (2-col grid)
+  ══════════════════════════════════ */
+  .hero-body {
+    position: relative;
+    z-index: 20;
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    padding: 36px 72px 60px;
+    gap: 24px;
+    max-width: 1360px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+
+  /* ── Left column ── */
+  .content-col {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .title-graphic {
+    width: 100%;
+    max-width: 640px;
+    height: auto;
+    filter: drop-shadow(0 6px 24px rgba(2, 147, 204, 0.45));
+    animation: heroFadeLeft 0.9s ease-out both, floatPlayer 6s ease-in-out 0.9s infinite;
+  }
+
+  .subtitle {
+    font-size: 18px;
+    font-weight: 500;
+    color: #fff;
+    letter-spacing: 1.5px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  }
+
+  /* Stats glass card */
+  .stats {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    background: rgba(255, 255, 255, 0.436);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.684);
+    border-radius: 18px;
+    padding: 14px 8px;
+  }
+  .stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 22px;
+    gap: 3px;
+  }
+  .stat-icon { font-size: 18px; line-height: 1; }
+  .stat-num  { font-size: 22px; font-weight: 900; color: #565656; line-height: 1.1;  }
+  .stat-lbl  { font-size: 11px; color: rgb(157, 157, 157); white-space: nowrap; }
+  .stat-sep  { width: 1px; height: 44px; background: rgba(255,255,255,0.22); flex-shrink: 0; }
+
+  /* CTA Button */
+  .cta-wrap { display: flex; flex-direction: column; gap: 10px; }
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    background: var(--lime);
+    color: #1a0033;
+    font-size: 30px;
+    font-weight: 900;
+    font-family: inherit;
+    letter-spacing: 3px;
+    padding: 22px 68px;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    width: fit-content;
+    box-shadow: 0 6px 28px rgba(130,195,0,0.45);
+    animation: pulseCta 2.5s ease-in-out infinite;
+    transition: transform 0.15s;
+  }
+  .cta-btn:hover {
+    transform: translateY(-4px) scale(1.03);
+    background: #e8ff6a;
+    box-shadow: 0 14px 48px rgba(130,195,0,0.8), 0 0 0 8px rgba(71, 105, 2, 0.18);
+    letter-spacing: 4px;
+  }
+  .cta-btn:active { transform: translateY(0) scale(0.98); animation: none; }
+
+  @keyframes pulseCta {
+    0%, 100% { transform: translateY(0);     box-shadow: 0 6px 28px rgba(130,195,0,0.45); }
+    50%       { transform: translateY(-9px);  box-shadow: 0 18px 60px rgba(130,195,0,0.75), 0 0 36px rgba(130,195,0,0.45), 0 0 0 8px rgba(130,195,0,0.12); }
+  }
+
+  .quota-note {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    padding-left: 4px;
+  }
+
+  /* ── Hero countdown ── */
+  .hero-countdown {
+    font-size: 20px; font-weight: 700;
+    color: rgb(255, 255, 255);
+    letter-spacing: 1px;
+    white-space: nowrap;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+  }
+  .hcd-num {
+    color: #d5ff6c;
+    font-weight: 900;
+  }
+
+  /* Location / date bar */
+  .info-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+  }
+  .info-bar .sep { color: rgba(255,255,255,0.3); }
+
+  /* ── Right column (player) ── */
+  .player-col {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .player-img {
+    width: 100%;
+    max-width: 580px;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 24px 60px rgba(0,0,0,0.4));
+    animation: heroFadeRight 0.9s ease-out 0.3s both, floatPlayer 6s ease-in-out 1.2s infinite;
+    position: relative;
+    z-index: 2;
+  }
+  @keyframes floatPlayer {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-12px); }
+  }
+  @keyframes heroFadeLeft {
+    from { opacity: 0; transform: translateX(-50px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes heroFadeRight {
+    from { opacity: 0; transform: translateX(50px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes coursePopIn {
+    from { opacity: 0; transform: translateY(50px) scale(0.95); }
+    to   { opacity: 1; transform: translateY(0)    scale(1); }
+  }
+
+  /* Shuttlecocks – decorative floating */
+  .shuttle {
+    position: absolute;
+    object-fit: contain;
+    pointer-events: none;
+    z-index: 5;
+    animation: floatShuttle var(--dur, 5s) ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
+  }
+  @keyframes floatShuttle {
+    0%, 100% { transform: rotate(var(--r0, 25deg)) translateY(0px); }
+    50%       { transform: rotate(var(--r1, 40deg)) translateY(-16px); }
+  }
+
+  /* shuttle inside hero (absolute to section) */
+  .shuttle-abs { position: absolute; }
+
+  .s1 {
+    width: 150px;
+    top: 6%; right: 3%;
+    --r0: 15deg; --r1: 28deg; --dur: 5.5s; --delay: 0s;
+    filter: drop-shadow(0 8px 20px rgba(0,0,0,0.35));
+  }
+
+  /* ══════════════════════════════════
+    RESPONSIVE
+  ══════════════════════════════════ */
+
+  /* Tablet */
+  @media (max-width: 1024px) {
+    .top-bar  { padding: 24px 32px 0; }
+    .hero-body { padding: 20px 32px 40px; gap: 8px; }
+    .cta-btn  { font-size: 22px; padding: 16px 40px; }
+    .title-graphic { max-width: 380px; }
+    .player-img    { max-width: 380px; }
+    .stat { padding: 0 16px; }
+    .stat-num { font-size: 19px; }
+    .subtitle { font-size: 15px; }
+  }
+
+  /* Mobile */
+  @media (max-width: 767px) {
+    .hero { min-height: 88dvh; }
+
+    .top-bar { padding: 18px 20px 0; }
+    .logo img { height: 26px; }
+    .game-on-tag .l1 { font-size: 10px; letter-spacing: 2px; }
+    .game-on-tag .l2 { font-size: 8px; }
+    .game-on-tag img { width: 22px; height: 22px; }
+
+    /* Single column, no player */
+    .hero-body {
+      grid-template-columns: 1fr;
+      padding: 20px 20px 36px;
+      align-items: start;
+    }
+    .player-col { display: none; }
+
+    .content-col { gap: 28px; }
+    .title-graphic { max-width: 100%; }
+    .subtitle { font-size: 13px; letter-spacing: 0.5px; }
+
+    .stats { padding: 10px 4px; }
+    .stat { padding: 0 12px; }
+    .stat-num  { font-size: 16px; }
+    .stat-lbl  { font-size: 10px; }
+    .stat-sep  { height: 36px; }
+
+    .cta-btn { font-size: 20px; padding: 15px 32px; width: 100%; }
+    .hero-countdown { font-size: 16px; }
+
+    .s1 { width: 90px; top: 8%; right: 2%; }
+    .ball-lime-1 { width: 36px; height: 36px; }
+    .ball-purple { display: none; }
+    .ball-lime-2 { display: none; }
+  }
+
+  /* Small mobile */
+  @media (max-width: 380px) {
+    .hero { min-height: 80dvh; }
+    .top-bar { padding: 14px 16px 0; }
+    .hero-body { padding: 16px 16px 28px; }
+    .cta-btn { font-size: 18px; }
+  }
+
+  /* Large desktop */
+  @media (min-width: 1280px) {
+    .title-graphic { max-width: 600px; }
+    .player-img    { max-width: 680px; }
+  }
+
+  
+
+  /* ── Back to top button ── */
+  .back-top {
+    position: fixed;
+    bottom: 28px; right: 28px;
+    z-index: 999;
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: var(--lime);
+    border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.22), 0 0 0 3px rgba(218,255,73,0.25);
+    opacity: 0; pointer-events: none;
+    transform: translateY(12px);
+    transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.2s;
+  }
+  .back-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+  .back-top:hover {
+    box-shadow: 0 6px 28px rgba(218,255,73,0.6), 0 0 0 5px rgba(218,255,73,0.2);
+    transform: translateY(-3px);
+  }
+  .back-top:active { transform: translateY(0); }
+  .back-top svg { width: 22px; height: 22px; stroke: #1a3300; fill: none;
+    stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ═══════════════════════════════════════════════════
+   BELOW-HERO SECTIONS
+═══════════════════════════════════════════════════ */
+
+.page-section { padding: 72px 56px; background: #fff; }
+
+/* ── Section title banner ── */
+.sec-title-wrap {
+  display: flex; align-items: center; justify-content: center;
+  gap: 14px; margin-bottom: 52px;
+}
+.sec-title-img {
+  height: 56px; width: auto;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 3px 10px rgba(30,62,200,0.25));
+  opacity: 0;
+  transform: translateY(-18px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.sec-title-img.anim-in { opacity: 1; transform: translateY(0); }
+
+/* ══��═════════ COURSES IN HERO ════════════ */
+.courses-in-hero {
+  position: relative;
+  z-index: 10;
+  padding: 0 56px 80px;
+}
+@media (max-width: 1024px) { .courses-in-hero { padding: 0 32px 60px; } }
+@media (max-width: 767px)  { .courses-in-hero { padding: 48px 20px 48px; } }
+
+/* ════════════ COURSES GRID ════════════ */
+.courses-glass {
+  background: rgba(255,255,255,0.82);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  border: 1px solid rgba(255,255,255,0.9);
+  border-radius: 36px;
+  box-shadow: 0 16px 56px rgba(25,61,138,0.13), inset 0 1px 0 rgba(255,255,255,1);
+  padding: 48px 44px 56px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.courses-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 32px; align-items: stretch;
+}
+
+/* Outer wrapper: creates space for the hanging circle */
+.course-wrap {
+  position: relative;
+  padding-top: 90px;
+  display: flex; flex-direction: column; height: 100%;
+  opacity: 0;
+  transform: translateY(50px) scale(0.95);
+  transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.course-wrap.anim-in {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.course-wrap.anim-in:hover { transform: translateY(-6px); }
+
+/* Hanging circle – poster image */
+.course-poster {
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 180px; height: 180px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #e8ecff;
+  border: 5px solid #fff;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.18);
+  z-index: 3;
+}
+.course-poster img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Card body */
+.course-card {
+  border-radius: 20px; overflow: hidden; background: #fff;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.09), 0 2px 8px rgba(0,0,0,0.04);
+  display: flex; flex-direction: column; flex: 1;
+}
+
+/* Colored section with subtitle image – sits below the circle overlap */
+.card-sub {
+  padding: 96px 20px 20px; /* top pad = circle overlap (90px) + breathing room */
+  display: flex; justify-content: center; align-items: flex-end;
+}
+.ct-lime   { background: linear-gradient(to bottom, #dfff6b 0%, #daff49 40%, #ffffff 100%); }
+.ct-blue   { background: linear-gradient(to bottom, #9bafff 0%, #628cff 40%, #ffffff 100%); }
+.ct-purple { background: linear-gradient(to bottom, #d59aff 0%, #ae5eff 40%, #ffffff 100%); }
+.card-sub-img {
+  width: 100%; max-width: 220px; height: auto; object-fit: contain;
+  filter: drop-shadow(0 3px 8px rgba(0,0,0,0.2));
+}
+.card-body {
+  background: #fff; padding: 16px 20px 20px;
+  display: grid; grid-template-rows: 1fr 1fr 1fr auto; gap: 0; flex: 1;
+  text-align: center;
+}
+.card-row {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 4px; padding: 6px 0;
+}
+.c-tag {
+  display: inline-block; padding: 4px 14px; border-radius: 999px;
+  font-size: 12px; font-weight: 700; width: fit-content;
+}
+.c-tag-lime   { background: #94c615; color: #f0ffe0; }
+.c-tag-blue   { background: #4061d7; color: #fff; }
+.c-tag-purple { background: #7d27bf; color: #fff; }
+.c-desc { font-size: 14px; color: #333; line-height: 1.5; padding-left: 0; margin-bottom: 2px; }
+.card-cta {
+  display: block; text-align: center; padding: 12px;
+  border-radius: 999px; font-size: 18px; font-weight: 900;
+  letter-spacing: 2px; text-decoration: none; margin-top: auto;
+  transition: transform 0.15s, box-shadow 0.15s;
+  font-family: inherit; cursor: pointer; border: none;
+  align-self: stretch;
+}
+.card-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+.cta-lime   { background: linear-gradient(135deg, #f4ff9a 0%, #d4f020 100%); color: #000; }
+.cta-blue   { background: linear-gradient(135deg, #dceaff 0%, #478ef8 100%); color: #000; }
+.cta-purple { background: linear-gradient(135deg, #f1dfff 0%, #ac4dff 100%); color: #000; }
+
+/* ════════════ FEATURES ════════════ */
+.sec-features { background: #fff; }
+.features-banner {
+  display: block;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto 40px;
+  border-radius: 16px;
+  object-fit: cover;
+}
+.features-row {
+  display: flex; align-items: flex-start;
+  justify-content: center; gap: 6px;
+  max-width: 1000px; margin: 0 auto;
+  background: rgba(255,255,255,0.62);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255,255,255,0.85);
+  border-radius: 28px;
+  box-shadow: 0 8px 40px rgba(25,61,138,0.10), inset 0 1px 0 rgba(255,255,255,0.9);
+  padding: 36px 32px;
+}
+.feature {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 8px;
+  text-align: center; flex: 1; min-width: 0;
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.feature.anim-in { opacity: 1; transform: translateY(0); }
+.feat-icon-wrap {
+  width: 72px; height: 72px; border-radius: 50%;
+  border: 2px solid #3E9BED;
+  display: flex; align-items: center; justify-content: center;
+  background: #fff; flex-shrink: 0;
+  transition: background 0.2s, border-color 0.2s;
+}
+.feature:hover .feat-icon-wrap { background: #3E9BED; }
+.feat-icon-wrap svg {
+  width: 30px; height: 30px; stroke: #3E9BED; fill: none;
+  stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+  transition: stroke 0.2s;
+}
+.feature:hover .feat-icon-wrap svg { stroke: #fff; }
+.feat-name { font-weight: 900; font-size: 14px; color: #111; white-space: nowrap; }
+.feat-desc { font-size: 11px; color: #666; white-space: nowrap; }
+.feat-plus { display: none; }
+
+/* ════════════ COACHES ════════════ */
+.coaches-intro {
+  text-align: center; margin-bottom: 36px;
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.coaches-intro.anim-in { opacity: 1; transform: translateY(0); }
+.coaches-intro .sec-title-wrap { margin-bottom: 12px; }
+.coaches-quote {
+  font-size: 17px; color: #63a7e7; font-style: italic; font-weight: 700;
+  letter-spacing: 1.5px; margin-top: 25px;
+  
+}
+.coach0-wrap {
+  max-width: 1400px; margin: 0 auto 28px;
+  cursor: zoom-in;
+  border-radius: 20px; overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.13);
+  display: block;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.coach0-wrap:hover {
+  transform: scale(1.01);
+  box-shadow: 0 14px 48px rgba(0,0,0,0.2);
+}
+.coach0-wrap img {
+  width: 100%; height: auto; display: block;
+}
+.coaches-outer { position: relative; max-width: 1400px; margin: 0 auto; }
+.coach-nav { display: flex; gap: 5px; justify-content: center; margin-top: 5px; }
+.coach-arrow-btn {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: #3E9BED; color: #fff;
+  border: none; cursor: pointer; font-size: 22px; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 14px rgba(25,61,138,0.3);
+  transition: background 0.15s, transform 0.15s;
+  flex-shrink: 0;
+}
+.coach-arrow-btn:hover { background: #3E9BED; transform: scale(1.1); }
+.coach-arrow-btn:active { transform: scale(0.95); }
+.coaches-outer::after {
+  content: ''; position: absolute; top: 0; right: 0;
+  width: 80px; height: calc(100% - 16px);
+  background: linear-gradient(to right, transparent, #fff);
+  pointer-events: none; z-index: 2;
+}
+.coaches-scroll {
+  display: flex; gap: 8px;
+  overflow-x: auto; scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 16px; cursor: grab;
+}
+.coaches-scroll:active { cursor: grabbing; }
+.coaches-scroll::-webkit-scrollbar { height: 4px; }
+.coaches-scroll::-webkit-scrollbar-track { background: #f0f0f0; border-radius: 2px; }
+.coaches-scroll::-webkit-scrollbar-thumb { background: #c0caff; border-radius: 2px; }
+.coach-card {
+  flex: 0 0 240px; scroll-snap-align: start;
+  opacity: 0; transform: translateX(40px);
+  transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.coach-card.anim-in { opacity: 1; transform: translateX(0); }
+.coach-photo-placeholder {
+  width: 200px; height: 200px; border-radius: 16px;
+  background: #f0f2ff; border: 2px dashed #b8c4f0;
+  display: flex; align-items: center; justify-content: center;
+  color: #9aaad8; font-size: 12px;
+}
+.coach-photo {
+  width: 200px; height: 200px; border-radius: 16px;
+  object-fit: cover; display: block;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+/* ── Responsive for new sections ── */
+@media (max-width: 1024px) { .page-section { padding: 56px 32px; } }
+@media (max-width: 767px) {
+  .page-section { padding: 48px 20px; }
+  .sec-title-img { height: 38px; }
+  .sec-title-wrap { margin-bottom: 32px; }
+  .course-poster { width: 110px; height: 110px; border-width: 4px; }
+  .course-wrap { padding-top: 55px; }
+  .card-sub { padding-top: 60px; padding-bottom: 14px; }
+  .card-sub-img { max-width: 160px; }
+  .card-body { padding: 14px 16px 18px; gap: 8px; }
+  .card-cta { font-size: 15px; padding: 10px; }
+  .c-desc { font-size: 13px; }
+  .courses-glass { padding: 16px 0 4px; border-radius: 20px; overflow: hidden; max-width: 100%; }
+  .courses-grid {
+    display: flex; flex-direction: row;
+    overflow-x: auto; overflow-y: visible;
+    gap: 16px;
+    padding: 12px 20px 16px 28px;
+    scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+    scroll-padding-left: 28px;
+    scrollbar-width: none; max-width: none; margin: 0;
+  }
+  .courses-grid::-webkit-scrollbar { display: none; }
+  .course-wrap { flex: 0 0 240px; scroll-snap-align: start; }
+  .features-row {
+    display: flex; flex-wrap: wrap;
+    justify-content: center; gap: 20px;
+  }
+  .feature { flex: 0 0 calc(33% - 14px); }
+  .feat-plus { display: none; }
+  .feat-icon-wrap { width: 58px; height: 58px; }
+  .feat-icon-wrap svg { width: 24px; height: 24px; }
+  .feat-name { font-size: 12px; }
+  .feat-desc { font-size: 10px; white-space: normal; }
+  .coaches-outer::after { width: 50px; }
+}
+.scroll-hint {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+  margin: 4px auto 32px;
+  width: fit-content;
+}
+
+@media (max-width: 768px) {
+  .scroll-hint {
+    display: none;
+  }
+}
+
+.scroll-hint span {
+  width: 24px;
+  height: 24px;
+  border-right: 3px solid #ffffff;
+  border-bottom: 3px solid #ffffff;
+  transform: rotate(45deg);
+  opacity: 0;
+  animation: scrollChevron 1.8s ease-in-out infinite;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.45));
+}
+
+.scroll-hint span:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.scroll-hint span:nth-child(2) {
+  animation-delay: 0.22s;
+}
+
+.scroll-hint span:nth-child(3) {
+  animation-delay: 0.44s;
+}
+
+@keyframes scrollChevron {
+  0% {
+    opacity: 0;
+    transform: rotate(45deg) translate(-5px, -5px);
+  }
+
+  45% {
+    opacity: 1;
+  }
+
+  85% {
+    opacity: 0;
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+/* ─── smooth anchor scroll ─── */
+html { scroll-behavior: smooth; }
+
+/* ════════════ COURSE DETAIL SECTION ════════════ */
+.cd-section {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    to bottom,
+    #ffffff  0%,
+    #edf5ff 20%,
+    #e8f6f0 38%,
+    #eef3ff 62%,
+    #e8f6f0 80%,
+    #ffffff 100%
+  );
+  padding: 148px 56px;
+}
+.cd-bg-img {
+  position: absolute; inset: 0; z-index: 0;
+  -webkit-mask-image:
+    linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%),
+    linear-gradient(to right, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.78) 44%, rgba(0,0,0,0.92) 60%, rgba(0,0,0,0.92) 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%),
+    linear-gradient(to right, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.78) 44%, rgba(0,0,0,0.92) 60%, rgba(0,0,0,0.92) 100%);
+  mask-composite: intersect;
+}
+.cd-bg-img img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  opacity: 0.55; mix-blend-mode: multiply;
+}
+.cd-dark-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background: rgba(230,245,255,0.2);
+}
+.cd-content {
+  position: relative; z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  grid-template-rows: auto auto;
+  column-gap: 52px; row-gap: 0;
+  max-width: 1160px; margin: 0 auto;
+  align-items: start;
+}
+/* Row 1: subtitle + meta spanning both columns */
+.cd-header {
+  grid-column: 1 / -1; grid-row: 1;
+  opacity: 0; transform: translateY(-20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.cd-section.anim-in .cd-header { opacity: 1; transform: translateY(0); }
+
+/* ── LEFT ── */
+@keyframes subtitleFloat {
+  0%, 100% { transform: translateY(0);    filter: drop-shadow(0 4px 16px rgba(25,61,138,0.2)); }
+  50%       { transform: translateY(-8px); filter: drop-shadow(0 12px 24px rgba(25,61,138,0.28)); }
+}
+.cd-subtitle-img {
+  height: 140px; width: auto; object-fit: contain;
+  display: block; margin-bottom: 32px;
+  animation: subtitleFloat 3.8s ease-in-out infinite;
+}
+.cd-meta {
+  display: flex; gap: 36px; margin-bottom: 36px; flex-wrap: wrap;
+}
+.cd-meta-item {
+  display: flex; align-items: center; gap: 14px;
+}
+.cd-meta-icon {
+  width: 46px; height: 46px; border-radius: 50%;
+  border: 1.5px solid rgba(25,61,138,0.3);
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,0.7);
+  flex-shrink: 0;
+}
+.cd-meta-icon svg {
+  width: 22px; height: 22px; stroke: #193d8a; fill: none;
+  stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+}
+.cd-meta-label {
+  font-size: 11px; color: #193d8a; font-weight: 700;
+  letter-spacing: 1px; margin-bottom: 3px;
+}
+.cd-meta-val {
+  font-size: 15px; color: #1a2f4a; font-weight: 700;
+}
+
+/* Schedule */
+.sched-heading {
+  display: block;
+  background: #193d8a; color: #ffffff;
+  font-size: 17px; font-weight: 900; letter-spacing: 2px;
+  padding: 10px 18px; border-radius: 12px;
+  margin-bottom: 14px;
+  text-align: center;
+}
+.sched-row {
+  display: grid;
+  grid-template-columns: 40px minmax(0,1.1fr) minmax(0,1fr) minmax(0,1fr);
+  align-items: center; gap: 6px;
+  background: rgba(255,255,255,0.82);
+  border: 1px solid rgba(25,61,138,0.1);
+  border-radius: 12px;
+  padding: 11px 18px;
+  margin-bottom: 7px;
+  box-shadow: 0 2px 8px rgba(25,61,138,0.06);
+  transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
+}
+.sched-row:hover {
+  background: #f4fff7;
+  border-color: rgba(45,138,62,0.4);
+  box-shadow: 0 4px 16px rgba(45,138,62,0.14);
+}
+.sched-num {
+  font-size: 15px; font-weight: 900; color: #2d8a3e;
+}
+.sched-date {
+  font-size: 13px; font-weight: 600; color: #1a2f4a;
+}
+.sched-am, .sched-pm {
+  font-size: 12px; color: #5a6a8a;
+}
+.sched-code {
+  color: #99bf04; font-weight: 700; margin-left: 4px;
+}
+
+/* ── RIGHT ── */
+.cd-right {
+  display: flex; flex-direction: column; gap: 14px;
+  align-items: center;
+}
+.cd-prices {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 10px; width: 100%;
+}
+.price-box {
+  background: #ffffff;
+  border: 1px solid rgba(25,61,138,0.12);
+  border-radius: 16px; padding: 14px 8px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(25,61,138,0.08);
+}
+.price-box.price-early {
+  border-color: #b8e86a;
+  background: linear-gradient(160deg, #f0ffd0 0%, #e8ffaa 100%);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.pb-tier {
+  font-size: 11px; font-weight: 700; color: #193d8a;
+  background: rgba(25,61,138,0.07);
+  border-radius: 999px; padding: 2px 8px;
+  display: inline-block; margin-bottom: 6px;
+}
+.price-early .pb-tier {
+  color: #3a6600; background: rgba(26,107,42,0.1);
+}
+.pb-disc {
+  font-size: 30px; font-weight: 900; color: #1a6b2a;
+  line-height: 1.1; margin: 4px 0;
+  background: var(--lime); border-radius: 10px;
+  padding: 4px 8px; display: inline-block;
+}
+.pb-disc-note {
+  font-size: 10px; color: #3a6600; font-weight: 600;
+  margin-top: 5px;
+}
+.pb-main {
+  font-size: 26px; font-weight: 900; color: #1a2f4a;
+  line-height: 1.1; margin: 4px 0;
+}
+.price-tier1 .pb-main { color: #1a6b2a; }
+.pb-jersey {
+  font-size: 10px; color: #1a6b2a; font-weight: 700;
+  background: rgba(26,107,42,0.09);
+  border-radius: 999px; padding: 2px 7px;
+  display: inline-block; margin-top: 4px;
+}
+/* CTA glow color per section */
+:root { --cta-glow: rgba(130,195,0,0.65); }
+.cd-section.cd-blue   { --cta-glow: rgba(54,114,241,0.55); }
+.cd-section.cd-purple { --cta-glow: rgba(139,32,216,0.55); }
+
+@keyframes ctaBounce {
+  0%, 100% { transform: translateY(0);     box-shadow: 0 6px 24px var(--cta-glow); }
+  50%       { transform: translateY(-10px); box-shadow: 0 20px 56px var(--cta-glow), 0 0 32px var(--cta-glow); }
+}
+
+.cd-cta-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  align-self: center;
+  background: var(--lime); color: #1a3300;
+  font-size: 17px; font-weight: 900; letter-spacing: 2px;
+  padding: 11px 14px 11px 22px;
+  border-radius: 999px; text-decoration: none;
+  cursor: pointer; font-family: inherit; border: none;
+  animation: ctaBounce 2.2s ease-in-out infinite;
+}
+.cd-cta-btn:hover {
+  animation: none;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 44px var(--cta-glow);
+}
+
+/* CD section entrance animations — row 2 items */
+.cd-left {
+  grid-row: 2; grid-column: 1;
+  opacity: 0; transform: translateX(-52px);
+  transition: opacity 0.7s ease, transform 0.72s cubic-bezier(0.25, 1, 0.5, 1);
+  transition-delay: 0.1s;
+}
+.cd-right {
+  grid-row: 2; grid-column: 2;
+  opacity: 0; transform: translateX(52px);
+  transition: opacity 0.7s ease, transform 0.72s cubic-bezier(0.25, 1, 0.5, 1);
+  transition-delay: 0.18s;
+}
+/* Section 2 desktop: prices on left col, schedule on right col — reverse slide */
+.cd-section.cd-blue .cd-left  { transform: translateX(52px); }
+.cd-section.cd-blue .cd-right { transform: translateX(-52px); }
+.cd-section.anim-in .cd-left,
+.cd-section.anim-in .cd-right { opacity: 1; transform: translateX(0); }
+
+.cd-cta-circle {
+  width: 32px; height: 32px;
+  background: #1a3300; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0; color: var(--lime);
+}
+
+/* ── Schedule collapse toggle ── */
+.sched-rows.collapsed .sched-row:nth-child(n+6) { display: none; }
+.sched-toggle-btn {
+  display: block; width: 100%; margin-top: 6px;
+  background: rgba(255,255,255,0.7);
+  border: 1px solid rgba(25,61,138,0.2); border-radius: 8px;
+  padding: 8px 14px; font-size: 13px; font-weight: 700;
+  color: #193d8a; cursor: pointer; letter-spacing: 1px;
+  font-family: inherit;
+  transition: background 0.15s, color 0.15s;
+}
+.sched-toggle-btn:hover { background: #e8f0ff; color: #0d2266; }
+.cd-section.cd-purple .sched-toggle-btn {
+  color: #8b20d8; border-color: rgba(139,32,216,0.25);
+}
+.cd-section.cd-purple .sched-toggle-btn:hover { background: #f3e8ff; color: #6a0dad; }
+
+/* ── Horizontal scroll nav (mobile) ── */
+.hscroll-wrap { position: relative; }
+.hscroll-nav {
+  display: none; justify-content: center;
+  gap: 8px; padding: 10px 20px 0;
+}
+@media (max-width: 767px) { .hscroll-nav { display: flex; } }
+.hsn-btn {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: #3E9BED; color: #fff;
+  border: none; cursor: pointer; font-size: 22px; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 14px rgba(25,61,138,0.3);
+  flex-shrink: 0; font-family: inherit;
+  transition: background 0.15s, transform 0.15s;
+}
+.hsn-btn:hover    { background: #2d83c8; transform: scale(1.1); }
+.hsn-btn:active   { transform: scale(0.95); }
+.hsn-btn:disabled { opacity: 0.3; cursor: default; transform: none !important; }
+
+/* Responsive for cd-section */
+@media (max-width: 1024px) {
+  .cd-section { padding: 100px 32px; }
+  .cd-content { grid-template-columns: 1fr; column-gap: 0; row-gap: 28px; align-items: start; }
+  .cd-header { grid-column: 1; grid-row: 1; }
+  .cd-left   { grid-column: 1; grid-row: 2; }
+  .cd-right  { grid-column: 1; grid-row: 3; }
+  .cd-prices { max-width: 100%; }
+}
+@media (max-width: 767px) {
+  .cd-section { padding: 80px 20px; }
+  .cd-subtitle-img { height: 90px; }
+  .sched-row {
+    grid-template-columns: 36px 1fr;
+    row-gap: 3px;
+    padding: 10px 14px;
+  }
+  .sched-date { grid-column: 2; }
+  .sched-am { grid-column: 1 / -1; padding-left: 44px; font-size: 11px; }
+  .sched-pm { grid-column: 1 / -1; padding-left: 44px; font-size: 11px; }
+  .cd-prices { grid-template-columns: repeat(3, 1fr); }
+  .pb-main { font-size: 21px; }
+  .pb-disc { font-size: 22px; }
+  .cd-cta-btn { font-size: 15px; }
+}
+@media (max-width: 400px) {
+  .cd-prices { grid-template-columns: 1fr; max-width: 220px; }
+}
+
+/* ════════════ VIDEO SECTION ════════════ */
+.sec-video { background: #000; padding: 0; }
+.video-row {
+  display: flex; gap: 0;
+  width: 100%;
+}
+.video-wrap {
+  flex: 1; position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+.video-wrap video {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+@media (max-width: 767px) {
+  .video-row { flex-direction: column; }
+  .video-wrap { width: 100%; flex: none; }
+}
+
+/* ════════════ FOOTER ════════════ */
+.site-footer {
+  background: #000000;
+  color: #fff;
+  padding: 40px 56px 28px;
+}
+.footer-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; align-items: flex-start;
+}
+.footer-block {
+  display: flex; flex-direction: column; align-items: flex-start;
+  text-align: left; padding: 0 44px; flex-shrink: 0;
+}
+.footer-block:first-child { padding-left: 0; }
+.footer-block-title {
+  font-size: 11px; font-weight: 700; color: var(--lime);
+  letter-spacing: 2px; margin-bottom: 14px;
+  text-transform: uppercase;
+}
+.footer-item {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 14px; color: rgba(255,255,255,0.85);
+  white-space: nowrap; margin-bottom: 10px;
+}
+.footer-item svg {
+  width: 18px; height: 18px; stroke: var(--lime); fill: none;
+  stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+  flex-shrink: 0;
+}
+.footer-line-link {
+  text-decoration: none; color: rgba(255,255,255,0.85);
+  transition: color 0.15s;
+}
+.footer-line-link:hover { color: var(--lime); }
+.footer-divider {
+  width: 1px; align-self: stretch;
+  background: rgba(255,255,255,0.18);
+  flex-shrink: 0;
+}
+.footer-loc-item {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 14px; color: rgba(255,255,255,0.8);
+  margin-bottom: 8px; text-decoration: none;
+  transition: color 0.15s; white-space: nowrap;
+}
+.footer-loc-item:hover { color: #fff; }
+a.footer-loc-item:hover span { text-decoration: underline; }
+.footer-loc-item svg {
+  width: 15px; height: 15px; stroke: var(--lime); fill: none;
+  stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  flex-shrink: 0;
+}
+.footer-ext-icon {
+  width: 11px; height: 11px; stroke: rgba(255,255,255,0.4);
+  fill: none; stroke-width: 2; margin-left: 2px; flex-shrink: 0;
+}
+.footer-map-col {
+  flex: 1; min-width: 0; margin-left: 40px;
+}
+.footer-map-wrap {
+  border-radius: 12px; overflow: hidden;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.35);
+  line-height: 0;
+}
+.footer-map-wrap iframe {
+  width: 100%; height: 200px;
+  border: none; display: block;
+}
+.footer-bottom {
+  max-width: 1200px; margin: 20px auto 0;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  font-size: 11px; color: rgba(255,255,255,0.35);
+  text-align: center; letter-spacing: 1px;
+}
+@media (max-width: 1024px) {
+  .site-footer { padding: 36px 32px 24px; }
+  .footer-block { padding: 0 28px; }
+  .footer-map-col { margin-left: 28px; }
+}
+@media (max-width: 767px) {
+  .site-footer { padding: 32px 20px 24px; }
+  .footer-inner { flex-direction: column; align-items: flex-start; gap: 24px; }
+  .footer-block { padding: 0; }
+  .footer-divider { display: none; }
+  .footer-map-col { margin-left: 0; width: 100%; }
+  .footer-map-wrap iframe { height: 180px; }
+}
+
+/* ════════════ COURSE DETAIL: colour variants ════════════ */
+.cd-section.cd-blue {
+  background: linear-gradient(to bottom,
+    #ffffff 0%, #eef2ff 20%, #e8efff 38%,
+    #eef2ff 62%, #e8efff 80%, #ffffff 100%);
+}
+.cd-section.cd-blue .cd-dark-overlay { background: rgba(225,235,255,0.18); }
+.cd-section.cd-blue .sched-heading { background: #3672f1; }
+.cd-section.cd-blue .sched-num { color: #2356cc; }
+.cd-section.cd-blue .sched-row:hover {
+  background: #f0f4ff;
+  border-color: rgba(35,86,204,0.35);
+  box-shadow: 0 4px 16px rgba(35,86,204,0.12);
+}
+.cd-section.cd-blue .pb-tier { color: #3469db; background: rgba(25,61,138,0.08); }
+.cd-section.cd-blue .price-tier1 .pb-main { color: #3567d2; }
+.cd-section.cd-blue .pb-jersey { color: #193d8a; background: rgba(25,61,138,0.09); }
+.cd-section.cd-blue .price-box.price-early {
+  border-color: #b4c8ff;
+  background: linear-gradient(160deg, #c8d8ff 0%, #d8e6ff 100%);
+}
+.cd-section.cd-blue .pb-disc-note { color: #3672f1; }
+.cd-section.cd-blue .cd-cta-btn {
+  background: #3672f1; color: #fff;
+}
+.cd-section.cd-blue .cd-cta-circle { background: rgba(255,255,255,0.18); color: #fff; }
+.cd-section.cd-blue .pb-disc { background: #3672f1; color: #fff; }
+.cd-section.cd-blue .sched-code { color: #3672f1; }
+.cd-section.cd-blue .cd-bg-img {
+  -webkit-mask-image:
+    linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%),
+    linear-gradient(to right, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.82) 40%, rgba(0,0,0,0.76) 58%, rgba(0,0,0,0.76) 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%),
+    linear-gradient(to right, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.82) 40%, rgba(0,0,0,0.76) 58%, rgba(0,0,0,0.76) 100%);
+  mask-composite: intersect;
+}
+/* desktop-only: swap row-2 columns so prices on left, schedule on right */
+@media (min-width: 1025px) {
+  .cd-section.cd-blue .cd-content { grid-template-columns: 400px 1fr; }
+  .cd-section.cd-blue .cd-left  { grid-column: 2; }
+  .cd-section.cd-blue .cd-right { grid-column: 1; }
+  /* header: subtitle right-aligned, meta group also pushed right but items use natural row order */
+  .cd-section.cd-blue .cd-subtitle-img { margin-left: auto; margin-right: 0; }
+  .cd-section.cd-blue .cd-meta { justify-content: flex-end; }
+  .cd-section.cd-blue .cd-meta-item { flex-direction: row; }
+  .cd-section.cd-blue .cd-meta-label,
+  .cd-section.cd-blue .cd-meta-val { text-align: left; }
+  .cd-section.cd-blue .sched-heading { text-align: center; }
+}
+
+.cd-section.cd-purple {
+  background: linear-gradient(to bottom,
+    #ffffff 0%, #f7eeff 20%, #f2e8ff 38%,
+    #f7eeff 62%, #f2e8ff 80%, #ffffff 100%);
+  padding-bottom: 180px;
+}
+.cd-section.cd-purple .cd-dark-overlay { background: rgba(240,225,255,0.18); }
+.cd-section.cd-purple .cd-bg-img {
+  -webkit-mask-image:
+    linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%),
+    linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.85) 44%, rgba(0,0,0,0.88) 60%, rgba(0,0,0,0.88) 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%),
+    linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.85) 44%, rgba(0,0,0,0.88) 60%, rgba(0,0,0,0.88) 100%);
+  mask-composite: intersect;
+}
+.cd-section.cd-purple .sched-heading { background: #8b20d8; }
+.cd-section.cd-purple .sched-num { color: #8b20d8; }
+.cd-section.cd-purple .sched-row:hover {
+  background: #fdf6ff;
+  border-color: rgba(139,32,216,0.3);
+  box-shadow: 0 4px 16px rgba(139,32,216,0.12);
+}
+.cd-section.cd-purple .pb-tier { color: #8b20d8; background: rgba(139,32,216,0.07); }
+.cd-section.cd-purple .price-tier1 .pb-main { color: #7010b8; }
+.cd-section.cd-purple .pb-jersey { color: #7010b8; background: rgba(112,16,184,0.09); }
+.cd-section.cd-purple .price-box.price-early {
+  border-color: #d4aaff;
+  background: linear-gradient(160deg, #e4c8ff 0%, #efd8ff 100%);
+}
+.cd-section.cd-purple .cd-cta-btn {
+  background: #8b20d8; color: #fff;
+}
+.cd-section.cd-purple .cd-cta-circle { background: rgba(255,255,255,0.18); color: #fff; }
+.cd-section.cd-purple .pb-disc { background: #8b20d8; color: #fff; }
+
+/* ════════════ COURSE DETAIL 1: lime overrides ════════════ */
+.cd-section.cd-lime .sched-heading { background: var(--lime); color: #1a3300; }
+.cd-section.cd-lime .cd-meta-label { color: #3a6600; }
+.cd-section.cd-lime .cd-meta-icon { border-color: rgba(180,220,50,0.55); }
+.cd-section.cd-lime .cd-meta-icon svg { stroke: #3a6600; }
+.cd-section.cd-lime .pb-tier { color: #3a6600; background: rgba(180,220,50,0.18); }
+.cd-section.cd-lime .price-box { border-color: rgba(180,220,50,0.3); }
+
+/* ════════════ COURSE DETAIL 3: extra purple overrides ════════════ */
+.cd-section.cd-purple .cd-meta-label { color: #7010b8; }
+.cd-section.cd-purple .cd-meta-icon { border-color: rgba(139,32,216,0.3); }
+.cd-section.cd-purple .cd-meta-icon svg { stroke: #8b20d8; }
+.cd-section.cd-purple .sched-code { color: #8b20d8; }
+.cd-section.cd-purple .pb-disc-note { color: #7010b8; }
+
+/* ════════════ JERSEY SECTION ════════════ */
+.sec-jersey {
+  background: #ccebfd;
+  display: flex; justify-content: center; align-items: center;
+  padding: 0 56px 64px;
+}
+.jersey-img { max-width: 1060px; width: 100%; height: auto; display: block; margin: 0 auto; }
+@media (max-width: 1024px) { .sec-jersey { padding: 0 32px 48px; } }
+@media (max-width: 767px)  { .sec-jersey { padding: 0 20px 36px; } }
+
+/* ════════════ STUDENTS BENTO GRID ════════════ */
+.sec-students {
+  background: #eeeeee  center/cover no-repeat;
+  padding: 80px 56px;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgb(140, 103, 103) 14%, black 86%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 14%, black 86%, transparent 100%);
+}
+.students-bento {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 200px);
+  gap: 8px;
+  max-width: 1160px; margin: 0 auto;
+}
+.bento-item {
+  position: relative; overflow: hidden; border-radius: 14px;
+  opacity: 0; transform: scale(0.92);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.bento-item.anim-in { opacity: 1; transform: scale(1); }
+.bento-item img {
+  width: 100%; height: 100%; object-fit: cover;
+  display: block;
+  filter: saturate(1.15) brightness(0.92);
+  transition: transform 0.4s ease;
+}
+.bento-item:hover img { transform: scale(1.06); }
+.bento-item::after {
+  content: ''; position: absolute; inset: 0;
+  background: rgba(37, 118, 119, 0.337)
+  pointer-events none; 
+  border-radius: 14px;
+  mix-blend-mode:color;
+}
+/* Bento layout */
+.bento-s1  { grid-column: 1/3; grid-row: 1/3; }
+.bento-s2  { grid-column: 3;   grid-row: 1; }
+.bento-s3  { grid-column: 4;   grid-row: 1/3; }
+.bento-s4  { grid-column: 3;   grid-row: 2; }
+.bento-s5  { grid-column: 1;   grid-row: 3; }
+.bento-s6  { grid-column: 2/4; grid-row: 3; }
+.bento-s7  { grid-column: 4;   grid-row: 3; }
+.bento-s8  { grid-column: 1/3; grid-row: 4; }
+.bento-s9  { grid-column: 3;   grid-row: 4; }
+.bento-s10 { grid-column: 4;   grid-row: 4; }
+@media (max-width: 1024px) {
+  .sec-students { padding: 60px 32px; }
+  .students-bento { grid-template-rows: repeat(4, 160px); }
+}
+@media (max-width: 767px) {
+  .sec-students { padding: 40px 16px; }
+  .students-bento {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(7, 140px);
+  }
+  .bento-s1  { grid-column: 1/3; grid-row: 1/3; }
+  .bento-s2  { grid-column: 1;   grid-row: 3; }
+  .bento-s3  { grid-column: 2;   grid-row: 3; }
+  .bento-s4  { grid-column: 1;   grid-row: 4; }
+  .bento-s5  { grid-column: 2;   grid-row: 4; }
+  .bento-s6  { grid-column: 1/3; grid-row: 5; }
+  .bento-s7  { grid-column: 1;   grid-row: 6; }
+  .bento-s8  { grid-column: 2;   grid-row: 6; }
+  .bento-s9  { grid-column: 1;   grid-row: 7; }
+  .bento-s10 { grid-column: 2;   grid-row: 7; }
+}
+
+/* Section 2 mobile: small indent so subtitle/meta aren't flush to the left edge */
+@media (max-width: 1024px) {
+  .cd-section.cd-blue .cd-header { padding-left: 10px; }
+}
+
+/* ════════════ LIGHTBOX ════════════ */
+.lightbox-overlay {
+  position: fixed; inset: 0; z-index: 9000;
+  background: rgba(0,0,0,0.88);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.25s ease;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.lightbox-overlay.open { opacity: 1; pointer-events: auto; }
+.lightbox-img {
+  max-width: 88vw; max-height: 88vh;
+  border-radius: 16px;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+  object-fit: contain;
+  transform: scale(0.88);
+  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+  user-select: none;
+}
+.lightbox-overlay.open .lightbox-img { transform: scale(1); }
+.lightbox-close {
+  position: absolute; top: 20px; right: 24px;
+  width: 44px; height: 44px;
+  background: rgba(255,255,255,0.14);
+  border: 1px solid rgba(255,255,255,0.35);
+  border-radius: 50%; color: #fff; font-size: 18px;
+  cursor: pointer; display: flex;
+  align-items: center; justify-content: center;
+  transition: background 0.15s; line-height: 1;
+}
+.lightbox-close:hover { background: rgba(255,255,255,0.28); }
+.coach-photo { cursor: zoom-in; }
+
+/* ════════════ VENUE SECTION ════════════ */
+.sec-venues {
+  background: #ffffff;
+  padding: 80px 56px;
+}
+.venues-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 32px; max-width: 1200px; margin: 0 auto;
+}
+.venue-card {
+  background: #fff; border-radius: 20px; overflow: hidden;
+  box-shadow: 0 8px 32px rgba(25,61,138,0.10);
+  display: flex; flex-direction: column;
+  border: 1px solid rgba(62,155,237,0.15);
+  opacity: 0; transform: translateY(40px);
+  transition: opacity 0.55s ease, transform 0.55s ease, box-shadow 0.2s;
+}
+.venue-card.anim-in { opacity: 1; transform: translateY(0); }
+.venue-divider {
+  display: flex; align-items: center; gap: 10px;
+  padding: 20px 20px 0;
+  color: #3E9BED; font-size: 15px; font-weight: 900; letter-spacing: 2px;
+}
+.venue-divider::before,
+.venue-divider::after {
+  content: ''; flex: 1; height: 1.5px;
+  background: rgba(62,155,237,0.35);
+}
+.venue-photo {
+  margin: 14px 14px 0; border-radius: 12px; overflow: hidden;
+  aspect-ratio: 4 / 3; background: #dce8ff;
+}
+.venue-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.venue-photo-placeholder {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  color: #90a8d8; font-size: 13px; font-weight: 600; letter-spacing: 1px;
+}
+.venue-info {
+  padding: 16px 20px 22px; display: flex; flex-direction: column; gap: 8px; flex: 1;
+}
+.venue-row {
+  display: flex; align-items: flex-start; gap: 7px;
+  font-size: 13px; color: #3a4a6a; line-height: 1.5;
+}
+.venue-row svg {
+  width: 14px; height: 14px; stroke: #3E9BED; fill: none;
+  stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  flex-shrink: 0; margin-top: 2px;
+}
+.venue-map-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  background: #3E9BED; color: #fff;
+  padding: 8px 18px; border-radius: 999px;
+  font-size: 13px; font-weight: 700; text-decoration: none;
+  margin-top: 6px; align-self: flex-start;
+  transition: background 0.15s, transform 0.15s;
+  border: none; cursor: pointer;
+}
+.venue-map-btn:hover { background: #2d83c8; transform: translateY(-2px); }
+.venue-map-btn svg {
+  width: 13px; height: 13px; stroke: #fff; fill: none;
+  stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+}
+@media (max-width: 1024px) { .sec-venues { padding: 60px 32px; } .venues-grid { gap: 24px; } }
+@media (max-width: 767px) {
+  .sec-venues { padding: 48px 0 36px; }
+  .venues-grid {
+    display: flex; flex-direction: row;
+    overflow-x: auto; gap: 16px;
+    padding: 8px 20px 16px 28px;
+    scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+    scroll-padding-left: 28px;
+    scrollbar-width: none; max-width: none; margin: 0;
+    grid-template-columns: unset;
+  }
+  .venues-grid::-webkit-scrollbar { display: none; }
+  .venue-card { flex: 0 0 280px; scroll-snap-align: start; }
+}
+
+/* ════════════ FAQ ════════════ */
+.sec-faq {
+  padding: 80px 32px 72px;
+  background: #f9fbff;
+}
+.faq-inner {
+  max-width: 820px;
+  margin: 0 auto;
+}
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.faq-item {
+  background: #fff;
+  border: 1.5px solid #e2edf8;
+  border-radius: 14px;
+  overflow: hidden;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+.faq-item.open {
+  border-color: #3E9BED;
+  box-shadow: 0 4px 20px rgba(62,155,237,0.12);
+}
+.faq-q {
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 20px;
+  text-align: left;
+  font-family: inherit;
+}
+.faq-q-num {
+  flex-shrink: 0;
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  background: #3E9BED;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 900;
+  display: flex; align-items: center; justify-content: center;
+  letter-spacing: 0;
+}
+.faq-item.open .faq-q-num {
+  background: #2d83c8;
+}
+.faq-q-text {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a2e00;
+  line-height: 1.5;
+}
+.faq-item.open .faq-q-text {
+  color: #1a5fa8;
+}
+.faq-chevron {
+  flex-shrink: 0;
+  width: 20px; height: 20px;
+  stroke: #3E9BED;
+  transition: transform 0.25s;
+}
+.faq-item.open .faq-chevron {
+  transform: rotate(180deg);
+}
+.faq-a {
+  display: none;
+  padding: 0 20px 18px 62px;
+  font-size: 14px;
+  color: #3a4a3a;
+  line-height: 1.85;
+  white-space: pre-line;
+}
+.faq-item.open .faq-a {
+  display: block;
+}
+@media (max-width: 767px) {
+  .sec-faq { padding: 52px 16px 48px; }
+  .faq-a { padding-left: 20px; }
+  .faq-q { padding: 16px; gap: 12px; }
+}
+
+/* ════════════ FB VIDEO GRID ════════════ */
+.sec-ig {
+  padding: 60px 32px 52px;
+  background: #fff;
+}
+.ig-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+.ig-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+.vid-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.vid-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: #3E9BED;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.vid-title::before,
+.vid-title::after {
+  content: '';
+  flex: 1;
+  height: 0.5px;
+  background: #3E9BED;
+  border-radius: 2px;
+}
+.vid-frame-wrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #000;
+}
+.vid-frame-wrap.ratio-square  { padding-bottom: 100%; }
+.vid-frame-wrap.ratio-portrait { padding-bottom: 178.3%; }
+.vid-frame-wrap iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: none;
+}
+@media (max-width: 900px) {
+  .ig-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 540px) {
+  .ig-grid { grid-template-columns: 1fr; max-width: 360px; margin: 0 auto; }
+  .sec-ig { padding: 40px 16px 36px; }
+}
+
+/* ════════════ VIDEO LIGHTBOX ════════════ */
+.video-wrap { cursor: pointer; }
+.video-wrap::after {
+  content: '▶';
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 52px; color: rgba(255,255,255,0.85);
+  text-shadow: 0 2px 16px rgba(0,0,0,0.5);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+  background: rgba(0,0,0,0.18);
+  border-radius: 0;
+}
+.video-wrap:hover::after { opacity: 1; }
+.vid-lightbox {
+  position: fixed; inset: 0; z-index: 9100;
+  background: rgba(0,0,0,0.92);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.25s ease;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.vid-lightbox.open { opacity: 1; pointer-events: auto; }
+.vid-lightbox-player {
+  width: min(90vw, 1200px);
+  aspect-ratio: 16 / 9;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 32px 100px rgba(0,0,0,0.7);
+  transform: scale(0.9);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  background: #000;
+}
+.vid-lightbox.open .vid-lightbox-player { transform: scale(1); }
+.vid-lightbox-player video {
+  width: 100%; height: 100%;
+  object-fit: contain;
+  background: #000;
+}
+.vid-lightbox-close {
+  position: absolute; top: 20px; right: 24px;
+  width: 48px; height: 48px;
+  background: rgba(255,255,255,0.14);
+  border: 1px solid rgba(255,255,255,0.35);
+  border-radius: 50%; color: #fff; font-size: 20px;
+  cursor: pointer; display: flex;
+  align-items: center; justify-content: center;
+  transition: background 0.15s; line-height: 1;
+  z-index: 1;
+}
+.vid-lightbox-close:hover { background: rgba(255,255,255,0.28); }
+.video-wrap-hint {
+  position: absolute; bottom: 14px; left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.72); color: #fff;
+  font-size: 13px; font-weight: 700; letter-spacing: 1px;
+  padding: 6px 16px; border-radius: 999px;
+  pointer-events: none; white-space: nowrap;
+  opacity: 0; transition: opacity 0.2s;
+  z-index: 5;
+}
+.video-wrap.tap-hint .video-wrap-hint { opacity: 1; }
+/* ════════════ STICKY NAV ════════════ */
+.sticky-nav {
+  position: fixed; top: 16px; right: 16px;
+  z-index: 9999;
+}
+.sticky-nav-btn {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: var(--lime);
+  border: none;
+  cursor: pointer;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 5px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.22), 0 0 0 3px rgba(218,255,73,0.25);
+  transition: background 0.18s, box-shadow 0.2s;
+}
+.sticky-nav-btn:hover {
+  background: #c8f020;
+  box-shadow: 0 6px 28px rgba(218,255,73,0.6), 0 0 0 5px rgba(218,255,73,0.2);
+}
+.sticky-nav-btn span {
+  display: block; width: 20px; height: 2px;
+  background: #1a3300; border-radius: 2px;
+  transition: transform 0.22s ease, opacity 0.18s ease;
+  pointer-events: none;
+}
+.sticky-nav.open .sticky-nav-btn span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.sticky-nav.open .sticky-nav-btn span:nth-child(2) { opacity: 0; }
+.sticky-nav.open .sticky-nav-btn span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.sticky-nav-menu {
+  display: none;
+  position: absolute; top: 54px; right: 0;
+  background: rgba(240,255,200,0.18);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(180,240,0,0.3);
+  border-radius: 14px; padding: 6px;
+  min-width: 148px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.22);
+}
+.sticky-nav.open .sticky-nav-menu { display: block; }
+.sticky-nav-item {
+  display: block; padding: 11px 16px;
+  color: #1a2e00;
+  font-size: 14px; font-weight: 700; letter-spacing: 1.5px;
+  text-decoration: none; border-radius: 8px;
+  transition: background 0.15s, color 0.15s;
+}
+.sticky-nav-item:hover { background: rgba(168,212,0,0.3); color: #3a5c00; }
+</style>
+</head>
+<body>
+
+<section class="hero">
+
+  <!-- Background asset (court + sky) -->
+  <div class="hero-bg">
+    <img src="images/bg.jpg" alt=""/>
+  </div>
+
+  <!-- Soft glow blobs -->
+  <div class="blob blob-lime"></div>
+  <div class="blob blob-violet"></div>
+
+  <!-- Decorative floating balls (CSS only) -->
+  <div class="deco-ball ball-lime-1"></div>
+  <div class="deco-ball ball-lime-2"></div>
+  <div class="deco-ball ball-purple"></div>
+
+  <!-- Single large decorative shuttlecock, top-right -->
+  <img src="images/shuttlecock.png" alt="" class="shuttle shuttle-abs s1"/>
+
+  <!-- ── Top navigation bar ── -->
+  <header class="top-bar">
+    <div class="logo"><img src="images/gofly.png" alt="GoFly"/></div>
+    <div class="game-on-tag">
+      <div class="lines">
+        <span class="l1">GAME ON</span>
+        <span class="l2">ELEVATE EVERY SHOT</span>
+      </div>
+      <img src="images/shuttlecock.png" alt=""/>
+    </div>
+  </header>
+
+  <!-- ── Hero body ── -->
+  <div class="hero-body">
+
+    <!-- Left: text content -->
+    <div class="content-col">
+
+      <!-- Title graphic asset -->
+      <img
+        src="images/title.png"
+        alt="2026 高飛羽球夏令營"
+        class="title-graphic"
+      />
+<!-- Countdown -->
+      <div class="hero-countdown" id="hero-countdown">開營倒數：--</div>
+      <!-- <p class="subtitle">專業教練 × 分級訓練 × 快速進步</p> -->
+
+      <!-- Stats glass card -->
+      <div class="stats">
+        <div class="stat">
+          <span class="stat-num">場地</span>
+          <span class="stat-lbl">最佳選擇</span>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat">
+          <span class="stat-num">專業</span>
+          <span class="stat-lbl">教練團隊</span>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat">
+          <span class="stat-num">學習</span>
+          <span class="stat-lbl">分級訓練</span>
+        </div>
+      </div>
+
+      
+
+      <!-- CTA -->
+      <div class="cta-wrap">
+        <a href="#courses" class="cta-btn" style="text-decoration:none;">立即報名 ▶</a>
+      </div>
+
+    </div><!-- /content-col -->
+
+    <!-- Right: player image -->
+    <div class="player-col">
+      <img
+        src="images/player.png"
+        alt="羽球小選手"
+        class="player-img"
+      />
+    </div>
+
+  </div><!-- /hero-body -->
+
+  <!-- Scroll down hint -->
+   <div class="scroll-hint" id="scroll-hint">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- ═══════════════════ 課程總覽 ═══════════════════ -->
+  <div class="courses-in-hero" id="courses">
+    <div class="sec-title-wrap">
+      <img src="images/Subhead1.png" alt="課程總覽" class="sec-title-img"/>
+    </div>
+
+    <div class="courses-glass">
+    <div class="courses-grid">
+
+    <!-- Card 1 -->
+    <div class="course-wrap">
+      <div class="course-poster">
+        <img src="images/poster1.png" alt="課程海報"/>
+      </div>
+      <div class="course-card">
+        <div class="card-sub ct-lime">
+          <img src="images/subtitle1.png" alt="課程一" class="card-sub-img"/>
+        </div>
+        <div class="card-body">
+          <div class="card-row"><span class="c-tag c-tag-lime">適合對象</span><p class="c-desc">六年級 國三生 高三生</p></div>
+          <div class="card-row"><span class="c-tag c-tag-lime">課程目標</span><p class="c-desc">基礎建立・興趣培養</p></div>
+          <div class="card-row"><span class="c-tag c-tag-lime">上課地點</span><p class="c-desc">興埔</p></div>
+          <a href="#course-detail-1" class="card-cta cta-lime">了解更多</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="course-wrap">
+      <div class="course-poster">
+        <img src="images/poster2.png" alt="課程海報"/>
+      </div>
+      <div class="course-card">
+        <div class="card-sub ct-blue">
+          <img src="images/subtitle2.png" alt="課程二" class="card-sub-img"/>
+        </div>
+        <div class="card-body">
+          <div class="card-row"><span class="c-tag c-tag-blue">適合對象</span><p class="c-desc">大班-國中</p></div>
+          <div class="card-row"><span class="c-tag c-tag-blue">課程目標</span><p class="c-desc">常態訓練・學習檢定</p></div>
+          <div class="card-row"><span class="c-tag c-tag-blue">上課地點</span><p class="c-desc">興埔 | 龍潭</p></div>
+          <a href="#course-detail-2" class="card-cta cta-blue">了解更多</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="course-wrap">
+      <div class="course-poster">
+        <img src="images/poster3.png" alt="課程海報"/>
+      </div>
+      <div class="course-card">
+        <div class="card-sub ct-purple">
+          <img src="images/subtitle3.png" alt="課程三" class="card-sub-img"/>
+        </div>
+        <div class="card-body">
+          <div class="card-row"><span class="c-tag c-tag-purple">適合對象</span><p class="c-desc">國小進階</p></div>
+          <div class="card-row"><span class="c-tag c-tag-purple">課程目標</span><p class="c-desc">進階訓練・強化實力</p></div>
+          <div class="card-row"><span class="c-tag c-tag-purple">上課地點</span><p class="c-desc">正義館</p></div>
+          <a href="#course-detail-3" class="card-cta cta-purple">了解更多</a>
+        </div>
+      </div>
+    </div>
+
+    </div>
+    </div><!-- /courses-glass -->
+  </div><!-- /courses-in-hero -->
+
+</section><!-- /hero -->
+
+<!-- ═══════════════════ 課程特色 ═══════════════════ -->
+<section class="page-section sec-features" id="features">
+  <div class="sec-title-wrap">
+    <img src="images/Subhead2.png" alt="課程特色" class="sec-title-img"/>
+  </div>
+
+  <img src="images/banner.png" alt="課程特色 banner" class="features-banner"/>
+
+  <div class="features-row">
+    <div class="feature">
+      <div class="feat-icon-wrap">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+      </div>
+      <div class="feat-name">獨家課程</div>
+      <div class="feat-desc">全國唯一系統化羽球訓練</div>
+    </div>
+    <div class="feat-plus">+</div>
+
+    <div class="feature">
+      <div class="feat-icon-wrap">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+      </div>
+      <div class="feat-name">零基礎友善</div>
+      <div class="feat-desc">教練耐心指導，輕鬆愛上運動</div>
+    </div>
+    <div class="feat-plus">+</div>
+
+    <div class="feature">
+      <div class="feat-icon-wrap">
+        <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <div class="feat-name">鍛鍊體能</div>
+      <div class="feat-desc">增強免疫力，晚上更好睡</div>
+    </div>
+    <div class="feat-plus">+</div>
+
+    <div class="feature">
+      <div class="feat-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <div class="feat-name">專業場地</div>
+      <div class="feat-desc">安全舒適的訓練環境</div>
+    </div>
+    <div class="feat-plus">+</div>
+
+    <div class="feature">
+      <div class="feat-icon-wrap">
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
+      <div class="feat-name">態度培養</div>
+      <div class="feat-desc">訓練中養成紀律及好品格</div>
+    </div>
+    <div class="feat-plus">+</div>
+
+  </div>
+  
+</section>
+
+<!-- ═══════════════════ 球衣展示 ═══════════════════ -->
+<div class="page-section sec-features" id="features">
+  <img src="images/jersey.png" alt="GoFly 球衣" class="jersey-img"/>
+</div>
+
+<!-- ═══════════════════ 專業教練團隊 ═══════════════════ -->
+<section class="page-section" id="coaches">
+  <div class="coaches-intro">
+    <div class="sec-title-wrap">
+      <img src="images/Subhead3.png" alt="專業教練團隊" class="sec-title-img"/>
+    </div>
+    <p class="coaches-quote">「 對的訓練，讓孩子的成長不只是期待 」</p>
+  </div>
+
+  <!-- <div class="coach0-wrap" id="coach0-wrap">
+    <img src="images/coach/coach0.png" alt="教練團隊合照" class="coach-photo-full" id="coach0-img"/>
+  </div> -->
+
+  <div class="coaches-outer">
+    <div class="coaches-scroll" id="coaches-scroll">
+      <div class="coach-card"><img src="images/coach/coach1.jpg" alt="教練" class="coach-photo"/></div>
+      <div class="coach-card"><img src="images//coach/coach2.jpg" alt="教練" class="coach-photo"/></div>
+      <div class="coach-card"><img src="images/coach/coach3.jpg" alt="教練" class="coach-photo"/></div>
+      <div class="coach-card"><img src="images/coach/coach4.jpg" alt="教練" class="coach-photo"/></div>
+      <div class="coach-card"><img src="images/coach/coach5.jpg" alt="教練" class="coach-photo"/></div>
+      <div class="coach-card"><img src="images/coach/coach6.jpg" alt="教練" class="coach-photo"/></div>
+      <div class="coach-card"><img src="images/coach/coach7.jpg" alt="教練" class="coach-photo"/></div>
+      <div class="coach-card"><img src="images/coach/coach8.jpg" alt="教練" class="coach-photo"/></div>
+
+    </div>
+  </div>
+  <div class="coach-nav">
+    <button class="coach-arrow-btn" id="coach-prev">&#8249;</button>
+    <button class="coach-arrow-btn" id="coach-next">&#8250;</button>
+  </div>
+</section>
+<!-- ═══════════════════宣傳片 ═══════════════════ -->
+<section class="page-section sec-video" id="promo-videos">
+  <div class="video-row">
+    <div class="video-wrap">
+      <video autoplay muted loop playsinline preload="auto">
+        <source src="mov/goFlyXmas.mp4" type="video/mp4"/>
+      </video>
+      <div class="video-wrap-hint">快速點擊兩下放大</div>
+    </div>
+    <div class="video-wrap">
+      <video autoplay muted loop playsinline preload="auto">
+        <source src="mov/799159258.464241.mp4" type="video/mp4"/>
+      </video>
+      <div class="video-wrap-hint">快速點擊兩下放大</div>
+    </div>
+  </div>
+</section>
+<!-- ═══════════════════ 課程詳情：畢業生羽球夏令營 ═══════════════════ -->
+<section class="cd-section cd-lime" id="course-detail-1">
+  <div class="cd-bg-img"><img src="images/bg2.png" alt=""/></div>
+
+  <div class="cd-content">
+
+    <!-- HEADER: title + meta (spans both columns) -->
+    <div class="cd-header">
+      <img src="images/subtitle1.png" alt="課程一" class="cd-subtitle-img"/>
+      <div class="cd-meta">
+        <div class="cd-meta-item">
+          <div class="cd-meta-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div>
+            <div class="cd-meta-label">適合對象</div>
+            <div class="cd-meta-val">六年級 國三生 高三生</div>
+          </div>
+        </div>
+        <div class="cd-meta-item">
+          <div class="cd-meta-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          </div>
+          <div>
+            <div class="cd-meta-label">課程目標</div>
+            <div class="cd-meta-val">基礎建立・興趣培養</div>
+          </div>
+        </div>
+        <div class="cd-meta-item">
+          <div class="cd-meta-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="cd-meta-label">上課地點</div>
+            <div class="cd-meta-val">興埔館</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEFT: schedule only -->
+    <div class="cd-left">
+      <div class="sched-heading">課程梯次</div>
+      <div class="sched-rows">
+        <div class="sched-row">
+          <span class="sched-num">01</span>
+          <span class="sched-date">6/15 (一) – 6/18 (四)</span>
+          <span class="sched-am">上午班 09:00-12:00<span class="sched-code">GSP091</span></span>
+          <span class="sched-pm">下午班 13:00-16:00<span class="sched-code">GSP131</span></span>
+        </div>
+        <div class="sched-row">
+          <span class="sched-num">02</span>
+          <span class="sched-date">6/22 (一) – 6/26 (五)</span>
+          <span class="sched-am">上午班 09:00-12:00<span class="sched-code">GSP092</span></span>
+          <span class="sched-pm">下午班 13:00-16:00<span class="sched-code">GSP132</span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: prices + cta -->
+    <div class="cd-right">
+      <div class="cd-prices">
+        <div class="price-box price-early">
+          <div class="pb-tier">早鳥優惠</div>
+          <div class="pb-disc">85折</div>
+          <div class="pb-disc-note">限時特惠</div>
+        </div>
+        <div class="price-box price-tier1">
+          <div class="pb-tier">第一梯</div>
+          <div class="pb-main">$2,950</div>
+          <div class="pb-jersey">✓ 含球衣</div>
+        </div>
+        <div class="price-box price-tier2">
+          <div class="pb-tier">第二～九梯</div>
+          <div class="pb-main">$3,690</div>
+          <div class="pb-jersey">✓ 含球衣</div>
+        </div>
+      </div>
+      <a href="https://2026goflycamp.netlify.app/graduate" class="cd-cta-btn" target="_blank" rel="noopener">
+        立即報名
+        <span class="cd-cta-circle">›</span>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ 課程詳情2：藍色系 ═══ -->
+<section class="cd-section cd-blue" id="course-detail-2">
+  <div class="cd-bg-img"><img src="images/bg3.png" alt=""/></div>
+  <div class="cd-dark-overlay"></div>
+  <div class="cd-content">
+    <div class="cd-header">
+      <img src="images/subtitle2.png" alt="課程二" class="cd-subtitle-img"/>
+      <div class="cd-meta">
+        <div class="cd-meta-item">
+          <div class="cd-meta-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div>
+            <div class="cd-meta-label">適合對象</div>
+            <div class="cd-meta-val">大班-國中</div>
+          </div>
+        </div>
+        <div class="cd-meta-item">
+          <div class="cd-meta-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          </div>
+          <div>
+            <div class="cd-meta-label">課程目標</div>
+            <div class="cd-meta-val">常態訓練・學習檢定</div>
+          </div>
+        </div>
+        <div class="cd-meta-item">
+          <div class="cd-meta-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="cd-meta-label">上課地點</div>
+            <div class="cd-meta-val">興埔館(GS)｜龍潭館(SS)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cd-left">
+      <div class="sched-heading">課程梯次</div>
+      <div class="sched-rows">
+        <div class="sched-row"><span class="sched-num">01</span><span class="sched-date">7/01 (二) – 7/03 (五)</span><span class="sched-am">上午班 09:00-12:00<span class="sched-code">GS/SS 091</span></span><span class="sched-pm">下午班 13:00-16:00<span class="sched-code">GS/SS 131</span></span></div>
+        <div class="sched-row"><span class="sched-num">02</span><span class="sched-date">7/06 (一) – 7/10 (五)</span><span class="sched-am">上午班 09:00-12:00<span class="sched-code">GS 092</span></span><span class="sched-pm">下午班 13:00-16:00<span class="sched-code">GS/SS 132</span></span></div>
+        <div class="sched-row"><span class="sched-num">03</span><span class="sched-date">7/13 (一) – 7/17 (五)</span><span class="sched-am">上午班 09:00-12:00<span class="sched-code">GS 093</span></span><span class="sched-pm">下午班 13:00-16:00<span class="sched-code">GS/SS 133</span></span></div>
+        <div class="sched-row"><span class="sched-num">04</span><span class="sched-date">7/20 (一) – 7/24 (五)</span><span class="sched-am">上午班 09:00-12:00<span class="sched-code">GS/SS 094</span></span><span class="sched-pm">下午班 13:00-16:00<span class="sched-code">GS/SS 134</span></span></div>
+        <div class="sched-row"><span class="sched-num">05</span><span class="sched-date">7/27 (一) – 7/31 (五)</span><span class="sched-am">上午班 09:00-12:00<span class="sched-code">GS 095</span></span><span class="sched-pm">下午班 13:00-16:00<span class="sched-code">GS/SS 135</span></span></div>
+        <div class="sched-row"><span class="sched-num">06</span><span class="sched-date">8/03 (一) – 8/07 (五)</span><span class="sched-am">上午班 09:00-12:00<span class="sched-code">GS 096</span></span><span class="sched-pm">下午班 13:00-16:00<span class="sched-code">GS/SS 136</span></span></div>
+        <div class="sched-row"><span class="sched-num">07</span><span class="sched-date">8/10 (一) – 8/14 (五)</span><span class="sched-am">上午班 09:00-12:00<span class="sched-code">GS 097</span></span><span class="sched-pm">下午班 13:00-16:00<span class="sched-code">GS/SS 137</span></span></div>
+        <div class="sched-row"><span class="sched-num">08</span><span class="sched-date">8/17 (一) – 8/21 (五)</span><span class="sched-am">上午班 09:00-12:00<span class="sched-code">GS/SS 098</span></span><span class="sched-pm">下午班 13:00-16:00<span class="sched-code">GS/SS 138</span></span></div>
+        <div class="sched-row"><span class="sched-num">09</span><span class="sched-date">8/24 (一) – 8/28 (五)</span><span class="sched-am">上午班 09:00-12:00<span class="sched-code">GS/SS 099</span></span><span class="sched-pm">下午班 13:00-16:00<span class="sched-code">GS/SS 139</span></span></div>
+      </div>
+    </div>
+    <div class="cd-right">
+      <div class="cd-prices">
+        <div class="price-box price-early"><div class="pb-tier">早鳥優惠</div><div class="pb-disc">85折</div><div class="pb-disc-note">限時特惠</div></div>
+        <div class="price-box price-tier1"><div class="pb-tier">第一梯</div><div class="pb-main">$2,210</div><div class="pb-jersey">✓ 含球衣</div></div>
+        <div class="price-box price-tier2"><div class="pb-tier">第二～九梯</div><div class="pb-main">$3,690</div><div class="pb-jersey">✓ 含球衣</div></div>
+      </div>
+      <a href="https://2026goflycamp.netlify.app/" class="cd-cta-btn" target="_blank" rel="noopener">立即報名<span class="cd-cta-circle">›</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 課程詳情3：紫色系 ═══ -->
+<section class="cd-section cd-purple" id="course-detail-3">
+  <div class="cd-bg-img"><img src="images/bg4.png" alt=""/></div>
+  <div class="cd-dark-overlay"></div>
+  <div class="cd-content">
+    <div class="cd-header">
+      <img src="images/subtitle3.png" alt="課程三" class="cd-subtitle-img"/>
+      <div class="cd-meta">
+        <div class="cd-meta-item">
+          <div class="cd-meta-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div>
+            <div class="cd-meta-label">適合對象</div>
+            <div class="cd-meta-val">國小進階</div>
+          </div>
+        </div>
+        <div class="cd-meta-item">
+          <div class="cd-meta-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          </div>
+          <div>
+            <div class="cd-meta-label">課程目標</div>
+            <div class="cd-meta-val">進階訓練・強化實力</div>
+          </div>
+        </div>
+        <div class="cd-meta-item">
+          <div class="cd-meta-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="cd-meta-label">上課地點</div>
+            <div class="cd-meta-val">正義館</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cd-left">
+      <div class="sched-heading">課程梯次</div>
+      <div class="sched-rows">
+        <div class="sched-row"><span class="sched-num">01</span><span class="sched-date">7/01 (二) – 7/03 (五)</span><span class="sched-am">上午班 09:00-12:00<span class="sched-code">BTS081</span></span><span class="sched-pm">下午班 13:00-16:00<span class="sched-code">BTS131</span></span></div>
+        <div class="sched-row"><span class="sched-num">02</span><span class="sched-date">7/06 (一) – 7/10 (五)</span><span class="sched-am">上午班 09:00-12:00<span class="sched-code">BTS082</span></span><span class="sched-pm">下午班 13:00-16:00<span class="sched-code">BTS132</span></span></div>
+        <div class="sched-row"><span class="sched-num">03</span><span class="sched-date">7/13 (一) – 7/17 (五)</span><span class="sched-am">上午班 09:00-12:00<span class="sched-code">BTS083</span></span><span class="sched-pm">下午班 13:00-16:00<span class="sched-code">BTS133</span></span></div>
+        <div class="sched-row"><span class="sched-num">04</span><span class="sched-date">7/20 (一) – 7/24 (五)</span><span class="sched-am">上午班 09:00-12:00<span class="sched-code">BTS084</span></span><span class="sched-pm">下午班 13:00-16:00<span class="sched-code">BTS134</span></span></div>
+        <div class="sched-row"><span class="sched-num">05</span><span class="sched-date">7/27 (一) – 7/31 (五)</span><span class="sched-am">上午班 09:00-12:00<span class="sched-code">BTS085</span></span><span class="sched-pm">下午班 13:00-16:00<span class="sched-code">BTS135</span></span></div>
+        <div class="sched-row"><span class="sched-num">06</span><span class="sched-date">8/03 (一) – 8/07 (五)</span><span class="sched-am">上午班 09:00-12:00<span class="sched-code">BTS086</span></span><span class="sched-pm">下午班 13:00-16:00<span class="sched-code">BTS136</span></span></div>
+        <div class="sched-row"><span class="sched-num">07</span><span class="sched-date">8/10 (一) – 8/14 (五)</span><span class="sched-am">上午班 09:00-12:00<span class="sched-code">BTS087</span></span><span class="sched-pm">下午班 13:00-16:00<span class="sched-code">BTS137</span></span></div>
+        <div class="sched-row"><span class="sched-num">08</span><span class="sched-date">8/17 (一) – 8/21 (五)</span><span class="sched-am">上午班 09:00-12:00<span class="sched-code">BTS088</span></span><span class="sched-pm">下午班 13:00-16:00<span class="sched-code">BTS138</span></span></div>
+        <div class="sched-row"><span class="sched-num">09</span><span class="sched-date">8/24 (一) – 8/28 (五)</span><span class="sched-am">上午班 09:00-12:00<span class="sched-code">BTS089</span></span><span class="sched-pm">下午班 13:00-16:00<span class="sched-code">BTS139</span></span></div>
+      </div>
+    </div>
+    <div class="cd-right">
+      <div class="cd-prices">
+        <div class="price-box price-early"><div class="pb-tier">早鳥優惠</div><div class="pb-disc">85折</div><div class="pb-disc-note">限時特惠</div></div>
+        <div class="price-box price-tier1"><div class="pb-tier">第一梯</div><div class="pb-main">$2,790</div><div class="pb-jersey">✓ 含球衣</div></div>
+        <div class="price-box price-tier2"><div class="pb-tier">第二～九梯</div><div class="pb-main">$4,600</div><div class="pb-jersey">✓ 含球衣</div></div>
+      </div>
+      <a href="https://2026goflycamp.netlify.app/workshop" class="cd-cta-btn" target="_blank" rel="noopener">立即報名<span class="cd-cta-circle">›</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ 場地介紹 ═══════════════════ -->
+<section class="page-section sec-venues" id="venues">
+  <div class="sec-title-wrap">
+    <img src="images/Subhead4.png" alt="場地介紹" class="sec-title-img"/>
+  </div>
+
+  <div class="venues-grid">
+
+    <!-- 正義館 -->
+    <div class="venue-card">
+      <div class="venue-divider">正義館</div>
+      <div class="venue-photo">
+        <img src="images/locate/l1.jpg" alt="正義館" onerror="this.style.display='none';this.parentNode.innerHTML='<div class=\'venue-photo-placeholder\'>照片即將上傳</div>'"/>
+      </div>
+      <div class="venue-info">
+        <div class="venue-row">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>324017桃園市平鎮區正義路156號</span>
+        </div>
+        <div class="venue-row">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.38 2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.75a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg>
+          <span>034687288</span>
+        </div>
+        <a href="https://maps.app.goo.gl/B43DXtEVW1fk2DSt9" class="venue-map-btn" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          場館位置
+        </a>
+      </div>
+    </div>
+
+    <!-- 龍潭館 -->
+    <div class="venue-card">
+      <div class="venue-divider">龍潭館</div>
+      <div class="venue-photo">
+        <img src="images/locate/l2.jpg" alt="龍潭館" onerror="this.style.display='none';this.parentNode.innerHTML='<div class=\'venue-photo-placeholder\'>照片即將上傳</div>'"/>
+      </div>
+      <div class="venue-info">
+        <div class="venue-row">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>325桃園市龍潭區龍平路986之1號</span>
+        </div>
+        <div class="venue-row">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.38 2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.75a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg>
+          <span>0985074849</span>
+        </div>
+        <a href="https://maps.app.goo.gl/obrK3Apapds4SpfB7" class="venue-map-btn" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          場館位置
+        </a>
+      </div>
+    </div>
+
+    <!-- 興埔館 -->
+    <div class="venue-card">
+      <div class="venue-divider">興埔館</div>
+      <div class="venue-photo">
+        <img src="images/locate/l3.jpg" alt="興埔館" onerror="this.style.display='none';this.parentNode.innerHTML='<div class=\'venue-photo-placeholder\'>照片即將上傳</div>'"/>
+      </div>
+      <div class="venue-info">
+        <div class="venue-row">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>324桃園市平鎮區興埔路232之2號</span>
+        </div>
+        <div class="venue-row">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.38 2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.75a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg>
+          <span>034280662</span>
+        </div>
+        <a href="https://maps.app.goo.gl/zdLpBmLqUsitANfZA" class="venue-map-btn" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          場館位置
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════ FAQ ═══════════════════ -->
+<section class="sec-faq" id="faq">
+  <div class="faq-inner">
+    <div class="sec-title-wrap">
+      <img src="images/Subhead5.png" alt="常見問答" class="sec-title-img"/>
+    </div>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-num">Q1</span>
+          <span class="faq-q-text">請問夏令營費用是如何計算的？</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">高飛羽球採「梯次制」報名，每一梯次為半天課程。
+家長可以依孩子的時間安排，自行選擇合適的上課梯次。
+
+• 上午＋下午合報：提供免費午餐
+• 僅報名半天：不含午餐（可協助代訂）
+
+另外，在 5/27 前完成報名，可享有早鳥優惠價格。</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-num">Q2</span>
+          <span class="faq-q-text">如果臨時請假，可以補課嗎？</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">整期課程報名後是無法補課的。
+若家長預期時間上可能有變動，高飛羽球會建議改以單堂方式報名，安排上會更有彈性。</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-num">Q3</span>
+          <span class="faq-q-text">活動贈品可以更換或折抵現金嗎？</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">活動贈品為統一提供，目前無法更換其他商品或折抵現金，還請家長理解。</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-num">Q4</span>
+          <span class="faq-q-text">幾點可以送孩子到場呢？</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">不同場館時間如下：
+
+📍 興埔館　08:00 開門｜09:00 上課
+📍 正義館　07:30 開門｜08:00 上課
+
+高飛羽球建議家長於開門後送達，讓孩子有充足時間準備，也能更順利進入課程狀態。</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-num">Q5</span>
+          <span class="faq-q-text">最晚可以幾點接回孩子？</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">課程結束後，孩子可以在館內座位區稍作休息，等候家長接送。
+若家長需要晚一點接回：
+
+• 建議可為孩子準備簡單點心或餐食
+• 並提前告知櫃檯預計接回時間
+
+現場人員也會協助留意孩子狀況，讓家長更安心。</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-num">Q6</span>
+          <span class="faq-q-text">球館有提供停車場嗎？</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">有的，高飛羽球館內設有停車空間，家長開車接送會相當方便。</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-num">Q7</span>
+          <span class="faq-q-text">可以只參加部分梯次嗎？</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">可以的。高飛羽球採彈性梯次報名，並不需要連續參加。
+若中間有間隔，會建議孩子維持簡單運動習慣，有助於回到課程時更順利銜接。</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-num">Q8</span>
+          <span class="faq-q-text">上午課與下午課內容會一樣嗎？</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">羽球基礎訓練需要透過穩定且反覆的練習，來建立正確的動作與身體記憶。
+教練會依每位孩子的程度與學習狀況進行調整，讓孩子在適合自己的節奏中學習與進步。</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-num">Q9</span>
+          <span class="faq-q-text">課程有分程度嗎？會不會跟不上？</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">這點家長可以放心。高飛羽球採分級分組教學，會依孩子的程度安排適合的訓練內容，讓每位孩子都能在合適的進度中學習。</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-num">Q10</span>
+          <span class="faq-q-text">夏令營和暑訓課程有什麼差別？</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">夏令營（興埔館）主要針對：
+
+• 沒有基礎或剛接觸羽球的孩子
+• 希望培養興趣與建立基本能力
+
+課程時間約三小時，安排較為適中，讓孩子能在不過度負擔的情況下穩定學習。</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-num">Q11</span>
+          <span class="faq-q-text">國中生或高中生適合參加嗎？</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">是適合的。高飛羽球會依年齡與程度進行分組安排，提供符合不同學習階段的訓練內容，讓孩子都能獲得適合的學習支持。</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-num">Q12</span>
+          <span class="faq-q-text">上課需要準備哪些物品？</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">建議家長為孩子準備：
+
+• 運動服裝
+• 羽球鞋或白底運動鞋
+• 羽球拍、跳繩
+• 水或運動飲料
+• 更換衣物
+• 盥洗用品
+
+讓孩子能在舒適、安全的狀態下參與課程。</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-num">Q13</span>
+          <span class="faq-q-text">球拍需要準備兒童專用的嗎？</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">高飛羽球建議使用成人球拍，較有助於建立正確的擊球動作與發力方式。</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-num">Q14</span>
+          <span class="faq-q-text">如果沒有裝備，可以在哪裡購買？</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">家長不需要擔心。可以至高飛羽球正義旗艦館選購，現場提供夏令營入門裝備優惠方案，並會有專人協助挑選適合孩子的用品。</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-num">Q15</span>
+          <span class="faq-q-text">家長可以陪同孩子上課嗎？</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">可以的。高飛羽球建議前 1～2 堂可以陪同孩子熟悉環境，之後可逐步讓孩子獨立參與課程，有助於培養孩子的適應能力與自信心。
+館內也設有咖啡廳空間，家長可以在舒適的環境中休息與等候。</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-num">Q16</span>
+          <span class="faq-q-text">課程結束後會有證書嗎？有什麼幫助？</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">完成成果檢定後，孩子將獲得證書。這不僅是對孩子學習成果的肯定，也能協助家長了解目前的學習進度。
+同時也可作為未來課程規劃參考，以及學習歷程紀錄與多元發展的輔助資料。</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FB VIDEOS ═══════════════════ -->
+<section class="sec-ig">
+  <div class="ig-inner">
+    <div class="ig-grid">
+
+      <div class="vid-card">
+        <div class="vid-title">最放心羽球夏令營</div>
+        <div class="vid-frame-wrap ratio-portrait">
+          <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Fgoflybadminton%2Fvideos%2F1228944558939745%2F&show_text=false&width=476&t=0" scrolling="no" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+        </div>
+      </div>
+
+      <div class="vid-card">
+        <div class="vid-title">接進夢想</div>
+        <div class="vid-frame-wrap ratio-portrait">
+<blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DXyk4pPzoDx/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:16px;"> <a href="https://www.instagram.com/reel/DXyk4pPzoDx/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank"> <div style=" display: flex; flex-direction: row; align-items: center;"> <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div></div></div><div style="padding: 19% 0;"></div> <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg></div><div style="padding-top: 8px;"> <div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">在 Instagram 查看這則貼文</div></div><div style="padding: 12.5% 0;"></div> <div style="display: flex; flex-direction: row; margin-bottom: 14px; align-items: center;"><div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(0px) translateY(7px);"></div> <div style="background-color: #F4F4F4; height: 12.5px; transform: rotate(-45deg) translateX(3px) translateY(1px); width: 12.5px; flex-grow: 0; margin-right: 14px; margin-left: 2px;"></div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(9px) translateY(-18px);"></div></div><div style="margin-left: 8px;"> <div style=" background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 20px; width: 20px;"></div> <div style=" width: 0; height: 0; border-top: 2px solid transparent; border-left: 6px solid #f4f4f4; border-bottom: 2px solid transparent; transform: translateX(16px) translateY(-4px) rotate(30deg)"></div></div><div style="margin-left: auto;"> <div style=" width: 0px; border-top: 8px solid #F4F4F4; border-right: 8px solid transparent; transform: translateY(16px);"></div> <div style=" background-color: #F4F4F4; flex-grow: 0; height: 12px; width: 16px; transform: translateY(-4px);"></div> <div style=" width: 0; height: 0; border-top: 8px solid #F4F4F4; border-left: 8px solid transparent; transform: translateY(-4px) translateX(8px);"></div></div></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center; margin-bottom: 24px;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 224px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 144px;"></div></div></a><p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;"><a href="https://www.instagram.com/reel/DXyk4pPzoDx/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">高飛羽球訓練中心（@goflybtc）分享的貼文</a></p></div></blockquote>
+<script async src="//www.instagram.com/embed.js"></script>        </div>
+      </div>
+
+      <!-- <div class="vid-card">
+        <div class="vid-title">羽球基地</div>
+        <div class="vid-frame-wrap ratio-portrait">
+<iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F900576622386373%2F&show_text=false&width=267&t=0" width="267" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>        </div>
+      </div>  -->
+
+      <div class="vid-card">
+        <div class="vid-title">小羽人寒訓</div>
+        <div class="vid-frame-wrap ratio-portrait">
+          <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F2076714583147726%2F&show_text=false&width=267&t=0" scrolling="no" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ 學員照片牆 ═══════════════════ -->
+<section class="sec-students">
+  <div class="students-bento">
+    <div class="bento-item bento-s1"><img src="images/student/s1.jpg" alt="學員"/></div>
+    <div class="bento-item bento-s2"><img src="images/student/s2.jpg" alt="學員"/></div>
+    <div class="bento-item bento-s3"><img src="images/student/s3.jpg" alt="學員"/></div>
+    <div class="bento-item bento-s4"><img src="images/student/s4.jpg" alt="學員"/></div>
+    <div class="bento-item bento-s5"><img src="images/student/s5.jpg" alt="學員"/></div>
+    <div class="bento-item bento-s6"><img src="images/student/s6.jpg" alt="學員"/></div>
+    <div class="bento-item bento-s7"><img src="images/student/s7.jpg" alt="學員"/></div>
+    <div class="bento-item bento-s8"><img src="images/student/s8.jpg" alt="學員"/></div>
+    <div class="bento-item bento-s9"><img src="images/student/s9.jpg" alt="學員"/></div>
+    <div class="bento-item bento-s10"><img src="images/student/s10.jpg" alt="學員"/></div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+
+    <!-- 聯絡我們 -->
+    <div class="footer-block">
+      <div class="footer-block-title">聯絡我們</div>
+      <a href="https://line.me/R/ti/p/@733siaai" class="footer-item footer-line-link" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M20 10c0 4.42-4.03 8-9 8-.78 0-1.54-.1-2.25-.27L5 19l.72-2.88C4.06 14.97 3 12.6 3 10c0-4.42 4.03-8 9-8s8 3.58 8 8z" stroke-width="1.7"/></svg>
+        LINE：@733siaai
+      </a>
+      <div class="footer-item">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.75a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.03z"/></svg>
+        (03) 4280662
+      </div>
+    </div>
+
+    <div class="footer-divider">
+    
+    </div>
+
+    <!-- 校區位置 -->
+    <div class="footer-block">
+      <div class="footer-block-title">校區位置</div>
+        <a href="https://maps.app.goo.gl/B43DXtEVW1fk2DSt9" class="footer-loc-item" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>正義館</span>
+        </a>
+        <a href="https://maps.app.goo.gl/obrK3Apapds4SpfB7" class="footer-loc-item" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>龍潭館</span>
+        </a>
+        <a href="https://maps.app.goo.gl/zdLpBmLqUsitANfZA" class="footer-loc-item" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>興埔館</span>
+        </a>
+    </div>
+
+    <!-- 正義館地圖 -->
+    <div class="footer-map-col">
+      <div class="footer-map-wrap">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d493.75884741659996!2d121.2248141382059!3d24.930409788275277!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346823d1233e2269%3A0xb61fe45ccfd3b3ea!2z6auY6aOb576955CD6KiT57e05Lit5b-DIOato-e-qeaXl-iJpumkqA!5e0!3m2!1szh-TW!2stw!4v1777394230739!5m2!1szh-TW!2stw" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+
+  </div>
+  <div class="footer-bottom">© 2026 GoFly 高飛羽球 · All Rights Reserved</div>
+</footer>
+
+<div class="lightbox-overlay" id="coach-lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+  <button class="lightbox-close" id="lightbox-close" aria-label="關閉">✕</button>
+  <img class="lightbox-img" id="lightbox-img" src="" alt=""/>
+</div>
+
+<div class="vid-lightbox" id="vid-lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+  <button class="vid-lightbox-close" id="vid-lightbox-close" aria-label="關閉">✕</button>
+  <div class="vid-lightbox-player">
+    <video id="vid-lightbox-video" controls playsinline preload="none"></video>
+  </div>
+</div>
+
+<button class="back-top" id="back-top" aria-label="回到頂部">
+  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<!-- ═══════════════════ 導覽列 ═══════════════════ -->
+<nav class="sticky-nav" id="sticky-nav" aria-label="快速導覽">
+  <button class="sticky-nav-btn" id="sticky-nav-toggle" aria-label="選單">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="sticky-nav-menu">
+    <a href="#courses"  class="sticky-nav-item">課程總覽</a>
+    <a href="#features" class="sticky-nav-item">課程特色</a>
+    <a href="#coaches"  class="sticky-nav-item">教練團隊</a>
+    <a href="#venues"   class="sticky-nav-item">場館介紹</a>
+    <a href="#faq"      class="sticky-nav-item">常見問答</a>
+  </div>
+</nav>
+
+<script>
+  /* ── Horizontal scroll nav ── */
+  function setupHScrollNav(gridEl) {
+    const prevBtn = document.createElement('button');
+    prevBtn.className = 'hsn-btn hsn-prev';
+    prevBtn.textContent = '‹';
+    const nextBtn = document.createElement('button');
+    nextBtn.className = 'hsn-btn hsn-next';
+    nextBtn.textContent = '›';
+
+    const navRow = document.createElement('div');
+    navRow.className = 'hscroll-nav';
+    navRow.appendChild(prevBtn);
+    navRow.appendChild(nextBtn);
+
+    // Insert nav row after the grid's direct parent container
+    // (outside courses-glass which has overflow:hidden)
+    const parent = gridEl.parentNode;
+    const insertAfter = parent.classList.contains('courses-glass') ? parent : gridEl;
+    insertAfter.after(navRow);
+
+    function cardStep() {
+      const first = gridEl.firstElementChild;
+      return first ? first.offsetWidth + 16 : 260;
+    }
+    function updateNav() {
+      const max = gridEl.scrollWidth - gridEl.clientWidth;
+      prevBtn.disabled = gridEl.scrollLeft < 4;
+      nextBtn.disabled = max > 0 && gridEl.scrollLeft >= max - 4;
+    }
+
+    prevBtn.addEventListener('click', function() {
+      gridEl.scrollBy({ left: -cardStep(), behavior: 'smooth' });
+    });
+    nextBtn.addEventListener('click', function() {
+      gridEl.scrollBy({ left: cardStep(), behavior: 'smooth' });
+    });
+    gridEl.addEventListener('scroll', updateNav, { passive: true });
+
+    // Wait for full layout before computing initial state
+    requestAnimationFrame(function() {
+      requestAnimationFrame(updateNav);
+    });
+  }
+
+  const coursesGridEl = document.querySelector('.courses-grid');
+  const venuesGridEl  = document.querySelector('.venues-grid');
+  if (coursesGridEl) setupHScrollNav(coursesGridEl);
+  if (venuesGridEl)  setupHScrollNav(venuesGridEl);
+
+  /* ── Schedule 查看更多 toggle ── */
+  document.querySelectorAll('.sched-rows').forEach(rows => {
+    if (rows.querySelectorAll('.sched-row').length <= 5) return;
+    rows.classList.add('collapsed');
+    const btn = document.createElement('button');
+    btn.className = 'sched-toggle-btn';
+    btn.textContent = '查看更多 ▼';
+    btn.addEventListener('click', () => {
+      const collapsed = rows.classList.toggle('collapsed');
+      btn.textContent = collapsed ? '查看更多 ▼' : '顯示更少 ▲';
+    });
+    rows.after(btn);
+  });
+
+  /* ── Hero countdown ── */
+  (function() {
+    const target = new Date('2026-06-15T09:00:00');
+    const el = document.getElementById('hero-countdown');
+    if (!el) return;
+    function n(v) { return '<span class="hcd-num">' + v + '</span>'; }
+    function tick() {
+      const diff = target - Date.now();
+      if (diff <= 0) { el.textContent = '營隊已經開始囉！'; return; }
+      const d = Math.floor(diff / 86400000);
+      const h = Math.floor((diff % 86400000) / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+      el.innerHTML = '開營倒數：' + n(d) + '天 ' + n(h) + '小時 ' + n(m) + '分 ' + n(s) + '秒';
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+
+  /* ── Coach scroll: mouse drag ── */
+  const coachScroll = document.getElementById('coaches-scroll');
+  let isDragging = false, dragStartX, dragScrollLeft;
+  coachScroll.addEventListener('mousedown', e => {
+    isDragging = true;
+    dragStartX = e.pageX - coachScroll.offsetLeft;
+    dragScrollLeft = coachScroll.scrollLeft;
+  });
+  document.addEventListener('mouseup', () => { isDragging = false; });
+  coachScroll.addEventListener('mousemove', e => {
+    if (!isDragging) return;
+    e.preventDefault();
+    coachScroll.scrollLeft = dragScrollLeft - (e.pageX - coachScroll.offsetLeft - dragStartX);
+  });
+
+  /* ── Coach scroll: arrow buttons ── */
+  const cardStride = 300;
+  document.getElementById('coach-prev').addEventListener('click', () => {
+    coachScroll.scrollBy({ left: -cardStride, behavior: 'smooth' });
+  });
+  document.getElementById('coach-next').addEventListener('click', () => {
+    coachScroll.scrollBy({ left: cardStride, behavior: 'smooth' });
+  });
+
+  /* ── Scroll hint: hide once user scrolls ── */
+  const scrollHint = document.getElementById('scroll-hint');
+  const backTop = document.getElementById('back-top');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60)  scrollHint.classList.add('hidden');
+    else                      scrollHint.classList.remove('hidden');
+    if (window.scrollY > 320) backTop.classList.add('visible');
+    else                      backTop.classList.remove('visible');
+  }, { passive: true });
+  backTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  /* ── Helper: one-shot IntersectionObserver ── */
+  function onceVisible(el, threshold, fn) {
+    const obs = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) { fn(); obs.disconnect(); }
+    }, { threshold });
+    obs.observe(el);
+  }
+
+  /* ── 課程總覽: section title + cards stagger ── */
+  const coursesSection = document.getElementById('courses');
+  onceVisible(coursesSection.querySelector('.sec-title-img'), 0.5, () => {
+    coursesSection.querySelector('.sec-title-img').classList.add('anim-in');
+  });
+  document.querySelectorAll('.course-wrap').forEach((el, i) => {
+    el.style.transitionDelay = `${i * 0.18}s`;
+    onceVisible(el, 0.25, () => el.classList.add('anim-in'));
+  });
+
+  /* ── 課程特色: section title + feature icons stagger ── */
+  const featSection = document.getElementById('features');
+  onceVisible(featSection.querySelector('.sec-title-img'), 0.5, () => {
+    featSection.querySelector('.sec-title-img').classList.add('anim-in');
+  });
+  onceVisible(document.querySelector('.features-row'), 0.2, () => {
+    document.querySelectorAll('.feature').forEach((el, i) => {
+      setTimeout(() => el.classList.add('anim-in'), i * 90);
+    });
+    document.querySelectorAll('.feat-plus').forEach((el, i) => {
+      setTimeout(() => el.classList.add('anim-in'), i * 90 + 60);
+    });
+  });
+
+  /* ── 專業教練團隊: title fade, then cards slide in ── */
+  const coachSection = document.getElementById('coaches');
+  onceVisible(coachSection.querySelector('.sec-title-img'), 0.5, () => {
+    coachSection.querySelector('.sec-title-img').classList.add('anim-in');
+  });
+  onceVisible(document.querySelector('.coaches-intro'), 0.2, () => {
+    document.querySelector('.coaches-intro').classList.add('anim-in');
+    setTimeout(() => {
+      document.querySelectorAll('.coach-card').forEach((el, i) => {
+        setTimeout(() => el.classList.add('anim-in'), i * 80);
+      });
+    }, 280);
+  });
+
+  /* ── 課程詳情 entrance: left slides in from left, right from right ── */
+  document.querySelectorAll('.cd-section').forEach(section => {
+    onceVisible(section, 0.12, () => section.classList.add('anim-in'));
+  });
+
+  /* ── 場地介紹 entrance ── */
+  const venuesSection = document.getElementById('venues');
+  if (venuesSection) {
+    onceVisible(venuesSection.querySelector('.sec-title-img'), 0.5, () => {
+      venuesSection.querySelector('.sec-title-img').classList.add('anim-in');
+    });
+    onceVisible(venuesSection.querySelector('.venues-grid'), 0.15, () => {
+      venuesSection.querySelectorAll('.venue-card').forEach((card, i) => {
+        setTimeout(() => card.classList.add('anim-in'), i * 110);
+      });
+    });
+  }
+
+  /* ── 常見問答 section title ── */
+  const faqSection = document.getElementById('faq');
+  if (faqSection) {
+    onceVisible(faqSection.querySelector('.sec-title-img'), 0.5, () => {
+      faqSection.querySelector('.sec-title-img').classList.add('anim-in');
+    });
+  }
+
+  /* ── 學員照片牆 entrance ── */
+  const bentoSection = document.querySelector('.sec-students');
+  if (bentoSection) {
+    onceVisible(bentoSection, 0.1, () => {
+      bentoSection.querySelectorAll('.bento-item').forEach((item, i) => {
+        setTimeout(() => item.classList.add('anim-in'), i * 60);
+      });
+    });
+  }
+
+  /* ── Coach photo lightbox ── */
+  const lightbox = document.getElementById('coach-lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxClose = document.getElementById('lightbox-close');
+
+  const stickyNav = document.getElementById('sticky-nav');
+
+  function hideStickyNav() {
+    stickyNav.classList.remove('open');
+    stickyNav.style.display = 'none';
+  }
+  function showStickyNav() {
+    stickyNav.style.display = '';
+  }
+
+  function openLightbox(src, alt) {
+    lightboxImg.src = src;
+    lightboxImg.alt = alt || '';
+    lightbox.classList.add('open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    hideStickyNav();
+  }
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    showStickyNav();
+  }
+
+  document.querySelectorAll('.coach-photo').forEach(img => {
+    img.addEventListener('click', () => openLightbox(img.src, img.alt));
+  });
+  const coach0Wrap = document.getElementById('coach0-wrap');
+  const coach0Img  = document.getElementById('coach0-img');
+  if (coach0Wrap) coach0Wrap.addEventListener('click', () => openLightbox(coach0Img.src, coach0Img.alt));
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeLightbox(); closeVidLightbox(); } });
+
+  /* ── Video lightbox ── */
+  const vidLightbox      = document.getElementById('vid-lightbox');
+  const vidLightboxVideo = document.getElementById('vid-lightbox-video');
+  const vidLightboxClose = document.getElementById('vid-lightbox-close');
+
+  function openVidLightbox(src) {
+    vidLightboxVideo.src = src;
+    vidLightbox.classList.add('open');
+    vidLightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    vidLightboxVideo.play();
+    hideStickyNav();
+  }
+  function closeVidLightbox() {
+    vidLightbox.classList.remove('open');
+    vidLightbox.setAttribute('aria-hidden', 'true');
+    vidLightboxVideo.pause();
+    vidLightboxVideo.src = '';
+    document.body.style.overflow = '';
+    showStickyNav();
+  }
+
+  const isTouchDevice = () => navigator.maxTouchPoints > 0;
+
+  document.querySelectorAll('.video-wrap').forEach(wrap => {
+    let tapTimer = null;
+
+    wrap.addEventListener('click', () => {
+      const src = wrap.querySelector('video source').src;
+
+      if (!isTouchDevice()) {
+        // Desktop: single click opens
+        openVidLightbox(src);
+        return;
+      }
+
+      // Mobile: first tap shows hint, second tap within 400ms opens
+      if (tapTimer) {
+        clearTimeout(tapTimer);
+        tapTimer = null;
+        wrap.classList.remove('tap-hint');
+        openVidLightbox(src);
+      } else {
+        wrap.classList.add('tap-hint');
+        tapTimer = setTimeout(() => {
+          wrap.classList.remove('tap-hint');
+          tapTimer = null;
+        }, 400);
+      }
+    });
+  });
+  vidLightboxClose.addEventListener('click', closeVidLightbox);
+  vidLightbox.addEventListener('click', e => { if (e.target === vidLightbox) closeVidLightbox(); });
+
+  /* ── Sticky nav ── */
+  (function() {
+    const nav    = document.getElementById('sticky-nav');
+    const toggle = document.getElementById('sticky-nav-toggle');
+    if (!nav || !toggle) return;
+
+    toggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      nav.classList.toggle('open');
+    });
+
+    nav.querySelectorAll('.sticky-nav-item').forEach(function(a) {
+      a.addEventListener('click', function() {
+        nav.classList.remove('open');
+      });
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!nav.contains(e.target)) nav.classList.remove('open');
+    });
+  })();
+
+  /* ── FAQ accordion ── */
+  document.querySelectorAll('.faq-item .faq-q').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var item = btn.closest('.faq-item');
+      var isOpen = item.classList.contains('open');
+      item.classList.toggle('open', !isOpen);
+      btn.setAttribute('aria-expanded', String(!isOpen));
+    });
+  });
+</script>
+
+
+
+</body>
+</html>
