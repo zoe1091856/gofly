@@ -604,6 +604,7 @@
 
 /* ════════════ FEATURES ════════════ */
 .sec-features { background: #fff; }
+#coaches { background: linear-gradient(160deg, #ddeeff 0%, #eef6ff 45%, #f5faff 100%); }
 .features-banner {
   display: block;
   width: 100%;
@@ -664,6 +665,25 @@
   letter-spacing: 1.5px; margin-top: 25px;
   
 }
+.coaches-quote2 {
+  font-size: 14px; color:#81a2c1; font-weight: 400;
+  letter-spacing: 1.5px; margin-top: 14px;
+}
+.coaches-glass {
+  display: inline-block;
+  max-width: 680px;
+  width: 100%;
+  margin: 24px auto 0;
+  padding: 28px 36px;
+  background: rgba(255,255,255,0.45);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1.5px solid rgba(99,167,231,0.30);
+  border-radius: 20px;
+  box-shadow: 0 6px 28px rgba(62,155,237,0.10), inset 0 1px 0 rgba(255,255,255,0.7);
+}
+.coaches-glass .coaches-quote { margin-top: 0; }
+.coaches-glass .coaches-quote2:first-of-type { margin-top: 16px; }
 .coach0-wrap {
   max-width: 1400px; margin: 0 auto 28px;
   cursor: zoom-in;
@@ -680,7 +700,7 @@
   width: 100%; height: auto; display: block;
 }
 .coaches-outer { position: relative; max-width: 1400px; margin: 0 auto; }
-.coach-nav { display: flex; gap: 5px; justify-content: center; margin-top: 5px; }
+.coach-nav { display: flex; gap: 20px; justify-content: center; margin-top: 20px; }
 .coach-arrow-btn {
   width: 44px; height: 44px; border-radius: 50%;
   background: #3E9BED; color: #fff;
@@ -705,9 +725,8 @@
   padding-bottom: 16px; cursor: grab;
 }
 .coaches-scroll:active { cursor: grabbing; }
-.coaches-scroll::-webkit-scrollbar { height: 4px; }
-.coaches-scroll::-webkit-scrollbar-track { background: #f0f0f0; border-radius: 2px; }
-.coaches-scroll::-webkit-scrollbar-thumb { background: #c0caff; border-radius: 2px; }
+.coaches-scroll::-webkit-scrollbar { display: none; }
+.coaches-scroll { scrollbar-width: none; -ms-overflow-style: none; }
 .coach-card {
   flex: 0 0 240px; scroll-snap-align: start;
   opacity: 0; transform: translateX(40px);
@@ -1103,6 +1122,10 @@ html { scroll-behavior: smooth; }
 }
 @media (max-width: 767px) {
   .cd-section { padding: 80px 20px; }
+  .cd-meta { gap: 14px; margin-bottom: 20px; flex-direction: column; align-items: flex-start; }
+  .cd-meta-item { gap: 8px; }
+  .cd-meta-icon { width: 36px; height: 36px; }
+  .cd-meta-icon svg { width: 17px; height: 17px; }
   .cd-subtitle-img { height: 90px; }
   .sched-row {
     grid-template-columns: 36px 1fr;
@@ -1171,6 +1194,20 @@ html { scroll-behavior: smooth; }
   width: 18px; height: 18px; stroke: var(--lime); fill: none;
   stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
   flex-shrink: 0;
+}
+.footer-social-row {
+  display: flex; gap: 14px; margin-top: 4px;
+}
+.footer-social-link {
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.08);
+  transition: background 0.15s, transform 0.15s;
+}
+.footer-social-link:hover { background: rgba(218,255,73,0.18); transform: translateY(-2px); }
+.footer-social-link img {
+  width: 22px; height: 22px; object-fit: contain;
 }
 .footer-line-link {
   text-decoration: none; color: rgba(255,255,255,0.85);
@@ -1399,18 +1436,14 @@ a.footer-loc-item:hover span { text-decoration: underline; }
   .sec-students { padding: 40px 16px; }
   .students-bento {
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(7, 140px);
+    grid-template-rows: repeat(4, 140px);
   }
   .bento-s1  { grid-column: 1/3; grid-row: 1/3; }
   .bento-s2  { grid-column: 1;   grid-row: 3; }
   .bento-s3  { grid-column: 2;   grid-row: 3; }
   .bento-s4  { grid-column: 1;   grid-row: 4; }
   .bento-s5  { grid-column: 2;   grid-row: 4; }
-  .bento-s6  { grid-column: 1/3; grid-row: 5; }
-  .bento-s7  { grid-column: 1;   grid-row: 6; }
-  .bento-s8  { grid-column: 2;   grid-row: 6; }
-  .bento-s9  { grid-column: 1;   grid-row: 7; }
-  .bento-s10 { grid-column: 2;   grid-row: 7; }
+  .bento-s6, .bento-s7, .bento-s8, .bento-s9, .bento-s10 { display: none; }
 }
 
 /* Section 2 mobile: small indent so subtitle/meta aren't flush to the left edge */
@@ -2015,9 +2048,9 @@ a.footer-loc-item:hover span { text-decoration: underline; }
 </section>
 
 <!-- ═══════════════════ 球衣展示 ═══════════════════ -->
-<div class="page-section sec-features" id="features">
+<!-- <div class="page-section sec-features" id="features">
   <img src="images/jersey.png" alt="GoFly 球衣" class="jersey-img"/>
-</div>
+</div> -->
 
 <!-- ═══════════════════ 專業教練團隊 ═══════════════════ -->
 <section class="page-section" id="coaches">
@@ -2025,7 +2058,15 @@ a.footer-loc-item:hover span { text-decoration: underline; }
     <div class="sec-title-wrap">
       <img src="images/Subhead3.png" alt="專業教練團隊" class="sec-title-img"/>
     </div>
-    <p class="coaches-quote">「 對的訓練，讓孩子的成長不只是期待 」</p>
+    <div class="coaches-glass">
+      <p class="coaches-quote">「 對的訓練，讓孩子的成長不只是期待 」</p>
+      <p class="coaches-quote2">每一個孩子的汗水與努力，都值得最專業的陪伴。<br>
+        高飛教練團由經驗豐富的專業認證教練組成，<br>
+        融合體能訓練與羽球技術，不只是教技巧，更用心陪伴每一次成長與突破。</p>
+      <p class="coaches-quote2">從啟蒙到進階，從基本動作到比賽思維，<br>
+        無論你是初學者還是小選手，我們都為你設計最適合的訓練節奏。</p>
+    </div>
+    
   </div>
 
   <!-- <div class="coach0-wrap" id="coach0-wrap">
@@ -2606,12 +2647,17 @@ a.footer-loc-item:hover span { text-decoration: underline; }
     <div class="footer-block">
       <div class="footer-block-title">聯絡我們</div>
       <a href="https://line.me/R/ti/p/@733siaai" class="footer-item footer-line-link" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24"><path d="M20 10c0 4.42-4.03 8-9 8-.78 0-1.54-.1-2.25-.27L5 19l.72-2.88C4.06 14.97 3 12.6 3 10c0-4.42 4.03-8 9-8s8 3.58 8 8z" stroke-width="1.7"/></svg>
+        <img src="svg/line.svg" alt="LINE" style="width:20px;height:20px;object-fit:contain;">
         LINE：@733siaai
       </a>
       <div class="footer-item">
         <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.75a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.03z"/></svg>
         (03) 4280662
+      </div>
+      <div class="footer-social-row">
+        <a href="https://www.facebook.com/goflybadminton2?locale=zh_TW" class="footer-social-link" target="_blank" rel="noopener"><img src="svg/fb.svg" alt="Facebook"></a>
+        <a href="https://youtube.com/@gbtc4938?si=PFC0xI4m8km3o3qz" class="footer-social-link" target="_blank" rel="noopener"><img src="svg/youtube.svg" alt="YouTube"></a>
+        <a href="https://www.instagram.com/goflybtc?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="footer-social-link" target="_blank" rel="noopener"><img src="svg/ig.svg" alt="Instagram"></a>
       </div>
     </div>
 
